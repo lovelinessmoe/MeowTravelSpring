@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="vip.ashes.travel.user.mapper.TravelGroupMapper">
+  <resultMap id="BaseResultMap" type="vip.ashes.travel.user.entity.TravelGroup">
+    <!--@mbg.generated-->
+    <!--@Table Travel.travel_group-->
+    <id column="group_id" jdbcType="CHAR" property="groupId" />
+    <result column="group_num" jdbcType="INTEGER" property="groupNum" />
+    <result column="group_name" jdbcType="CHAR" property="groupName" />
+    <result column="creata_time" jdbcType="TIMESTAMP" property="creataTime" />
+    <result column="is_open_report" jdbcType="BOOLEAN" property="isOpenReport" />
+    <result column="report_open_time" jdbcType="TIMESTAMP" property="reportOpenTime" />
+    <result column="report_end_time" jdbcType="TIMESTAMP" property="reportEndTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    group_id, group_num, group_name, creata_time, is_open_report, report_open_time, report_end_time
+  </sql>
+</mapper>
