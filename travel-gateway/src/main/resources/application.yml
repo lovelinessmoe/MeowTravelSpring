@@ -39,6 +39,23 @@ spring:
         locator:
           enabled: true #开启从注册中心动态创建路由的功能
           lower-case-service-id: true #使用小写服务名，默认是大写
+      #      globalcors: # 全局的跨域处理
+      #        add-to-simple-url-handler-mapping: true # 解决options请求被拦截问题
+      #        corsConfigurations:
+      #          '[/**]':
+      #            allowedOrigins: # 允许哪些网站的跨域请求
+      #              - "http://localhost:5173"
+      #            allowedMethods: # 允许的跨域ajax的请求方式
+      #              - "GET"
+      #              - "POST"
+      #              - "DELETE"
+      #              - "PUT"
+      #              - "OPTIONS"
+      #            allowedHeaders: "*" # 允许在请求中携带的头信息
+      #            allowCredentials: true # 是否允许携带cookie
+      #            maxAge: 360000 # 这次跨域检测的有效期
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Origin, RETAIN_UNIQUE
   security:
     oauth2:
       resourceserver:

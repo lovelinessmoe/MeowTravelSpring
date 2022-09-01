@@ -11,12 +11,15 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.TokenGranter;
 import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.rsa.crypto.KeyStoreKeyFactory;
 import vip.ashes.travel.auth.component.JwtTokenEnhancer;
+import vip.ashes.travel.auth.component.TokenGranterExt;
 import vip.ashes.travel.auth.service.impl.AuthUserServiceImpl;
+import vip.ashes.travel.common.redis.service.RedisService;
 
 import java.security.KeyPair;
 import java.util.ArrayList;
@@ -36,6 +39,7 @@ public class Oauth2ServerConfig extends AuthorizationServerConfigurerAdapter {
     private final AuthUserServiceImpl userDetailsService;
     private final AuthenticationManager authenticationManager;
     private final JwtTokenEnhancer jwtTokenEnhancer;
+    private final RedisService redisService;
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
@@ -43,13 +47,16 @@ public class Oauth2ServerConfig extends AuthorizationServerConfigurerAdapter {
                 .withClient("meow_travel")
                 .secret(passwordEncoder.encode("123456"))
                 .scopes("all")
-                .authorizedGrantTypes("password", "refresh_token")
-                .accessTokenValiditySeconds(3600)
-                .refreshTokenValiditySeconds(86400);
+                //删除刷新令牌逻辑，简化系统整体流程
+                .authorizedGrantTypes("captcha")
+                .accessTokenValiditySeconds(86400);
     }
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
+        //自定义授权模式
+        TokenGranter tokenGranter = TokenGranterExt.getTokenGranter(authenticationManager, endpoints, redisService);
+        //自定义生成令牌
         TokenEnhancerChain enhancerChain = new TokenEnhancerChain();
         List<TokenEnhancer> delegates = new ArrayList<>();
         //配置JWT的内容增强器
@@ -60,15 +67,16 @@ public class Oauth2ServerConfig extends AuthorizationServerConfigurerAdapter {
                 //配置加载用户信息的服务
                 .userDetailsService(userDetailsService)
                 .accessTokenConverter(accessTokenConverter())
+                .tokenGranter(tokenGranter)
                 .tokenEnhancer(enhancerChain);
     }
 
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) {
-        /**
-         * 主要是让/oauth/token支持client_id和client_secret做登陆认证如果开启了allowFormAuthenticationForClients，那么就在BasicAuthenticationFilter之前
-         * 添加ClientCredentialsTokenEndpointFilter,使用ClientDetailsUserDetailsService来进行登陆认证
-         */
+        //主要是让/oauth/token支持client_id和client_secret做登陆认证
+        // 如果开启了allowFormAuthenticationForClients，
+        // 那么就在BasicAuthenticationFilter之前添加ClientCredentialsTokenEndpointFilter,
+        // 使用ClientDetailsUserDetailsService来进行登陆认证
         security.allowFormAuthenticationForClients();
     }
 

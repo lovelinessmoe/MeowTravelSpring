@@ -9,19 +9,19 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import vip.ashes.travel.user.entity.User;
 
 import javax.servlet.http.HttpServletRequest;
-
 import java.util.Collection;
 
 
 /**
  * 获取登录用户信息
+ *
  * @author loveliness
  */
 @Component
 public class LoginUserUtil {
 
     @SneakyThrows
-    public User getCurrentUser(){
+    public User getCurrentUser() {
         //从Header中获取用户信息
         ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = servletRequestAttributes.getRequest();
@@ -30,11 +30,11 @@ public class LoginUserUtil {
 //        user.setRoles(Convert.toList(String.class,userJsonObject.get("authorities")));
         String user = userJsonObject.getStr("user");
         ObjectMapper objectMapper = new ObjectMapper();
-        return objectMapper.readValue(user,User.class);
+        return objectMapper.readValue(user, User.class);
     }
 
     @SneakyThrows
-    public Collection getCurrentUserAuth(){
+    public Collection getCurrentUserAuth() {
         //从Header中获取用户信息
         ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = servletRequestAttributes.getRequest();
@@ -42,6 +42,6 @@ public class LoginUserUtil {
         JSONObject userJsonObject = new JSONObject(userStr);
         String auth = userJsonObject.getStr("auth");
         ObjectMapper objectMapper = new ObjectMapper();
-        return objectMapper.readValue(auth,Collection.class);
+        return objectMapper.readValue(auth, Collection.class);
     }
 }

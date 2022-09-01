@@ -1,6 +1,5 @@
 package vip.ashes.travel.auth.component;
 
-import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
@@ -15,6 +14,7 @@ import java.util.Map;
 
 /**
  * JWT内容增强器
+ *
  * @author loveliness
  */
 @Component

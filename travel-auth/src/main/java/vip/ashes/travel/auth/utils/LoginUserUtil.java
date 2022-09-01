@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * 获取登录用户信息
+ *
  * @author loveliness
  */
 @Component

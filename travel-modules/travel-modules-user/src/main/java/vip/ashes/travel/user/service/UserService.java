@@ -1,9 +1,10 @@
 package vip.ashes.travel.user.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import vip.ashes.travel.common.core.Result;
 import vip.ashes.travel.user.entity.User;
-import com.baomidou.mybatisplus.extension.service.IService;
-public interface UserService extends IService<User>{
+
+public interface UserService extends IService<User> {
     /**
      * 比对数据库的密码和传进来的密码加密后是否相同
      *

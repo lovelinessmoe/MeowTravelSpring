@@ -60,7 +60,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public Result generateCaptcha() {
         //定义图形验证码的长、宽、验证码字符数、干扰元素个数
-        CircleCaptcha captcha = CaptchaUtil.createCircleCaptcha(150, 30, 5, 5);
+        CircleCaptcha captcha = CaptchaUtil.createCircleCaptcha(150, 30, 4, 4);
         String captchaVerification = "captcha" + IdUtil.fastSimpleUUID();
         String code = captcha.getCode();
         redisService.setCacheObject(captchaVerification, code);

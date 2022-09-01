@@ -47,10 +47,10 @@
 		</dependency>
 
 		<!-- bootstrap 启动器 -->
-		<dependency>
+		<!--<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-bootstrap</artifactId>
-		</dependency>
+		</dependency>-->
 	</dependencies>
 	<!-- 依赖声明 -->
 	<dependencyManagement>

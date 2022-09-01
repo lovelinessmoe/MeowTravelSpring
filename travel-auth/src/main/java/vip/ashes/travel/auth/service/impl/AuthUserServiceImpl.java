@@ -11,11 +11,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import vip.ashes.travel.auth.constant.MessageConstant;
 import vip.ashes.travel.auth.entity.SecurityUser;
 import vip.ashes.travel.auth.entity.User;
 import vip.ashes.travel.auth.mapper.AuthUserMapper;
 import vip.ashes.travel.auth.service.AuthUserService;
+import vip.ashes.travel.common.core.ResultCode;
 
 import javax.annotation.Resource;
 
@@ -34,17 +34,17 @@ public class AuthUserServiceImpl extends ServiceImpl<AuthUserMapper, User> imple
         QueryWrapper<User> eq = new QueryWrapper<User>().eq(User.COL_EMAIL, email);
         User user = authUserMapper.selectOne(eq);
         if (user == null) {
-            throw new UsernameNotFoundException(MessageConstant.USERNAME_PASSWORD_ERROR);
+            throw new UsernameNotFoundException(ResultCode.USER_CREDENTIALS_ERROR.getMessage());
         }
         SecurityUser securityUser = new SecurityUser(user);
         if (!securityUser.isEnabled()) {
-            throw new DisabledException(MessageConstant.ACCOUNT_DISABLED);
+            throw new DisabledException(ResultCode.USER_ACCOUNT_DISABLE.getMessage());
         } else if (!securityUser.isAccountNonLocked()) {
-            throw new LockedException(MessageConstant.ACCOUNT_LOCKED);
+            throw new LockedException(ResultCode.USER_ACCOUNT_LOCKED.getMessage());
         } else if (!securityUser.isAccountNonExpired()) {
-            throw new AccountExpiredException(MessageConstant.ACCOUNT_EXPIRED);
+            throw new AccountExpiredException(ResultCode.USER_ACCOUNT_EXPIRED.getMessage());
         } else if (!securityUser.isCredentialsNonExpired()) {
-            throw new CredentialsExpiredException(MessageConstant.CREDENTIALS_EXPIRED);
+            throw new CredentialsExpiredException(ResultCode.USER_CREDENTIALS_EXPIRED.getMessage());
         }
         return securityUser;
     }

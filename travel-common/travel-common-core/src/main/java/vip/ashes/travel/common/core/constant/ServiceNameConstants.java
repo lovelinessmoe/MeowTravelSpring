@@ -2,10 +2,10 @@ package vip.ashes.travel.common.core.constant;
 
 /**
  * 服务名称
+ *
  * @author loveliness
  */
-public class ServiceNameConstants
-{
+public class ServiceNameConstants {
     /**
      * 认证服务的serviceid
      */

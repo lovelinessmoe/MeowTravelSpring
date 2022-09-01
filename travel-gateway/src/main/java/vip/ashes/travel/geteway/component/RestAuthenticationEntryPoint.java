@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 import vip.ashes.travel.common.core.Result;
+import vip.ashes.travel.common.core.ResultCode;
 
 import java.nio.charset.StandardCharsets;
 
@@ -27,7 +28,7 @@ public class RestAuthenticationEntryPoint implements ServerAuthenticationEntryPo
         ServerHttpResponse response = exchange.getResponse();
         response.setStatusCode(HttpStatus.OK);
         response.getHeaders().add(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
-        String body = JSONUtil.toJsonStr(Result.error().message(e.getMessage()));
+        String body = JSONUtil.toJsonStr(Result.RCode(false, ResultCode.USER_ACCOUNT_EXPIRED));
         DataBuffer buffer = response.bufferFactory().wrap(body.getBytes(StandardCharsets.UTF_8));
         return response.writeWith(Mono.just(buffer));
     }

@@ -32,7 +32,7 @@ public class ResourceServiceImpl {
         resourceRolesMap.put("/system/user/removeMany", CollUtil.toList("ROLE_ADMIN"));
         resourceRolesMap.put("/system/user/list", CollUtil.toList("ROLE_ADMIN"));
 
-        resourceRolesMap.put("/user/user/getUserInfo", CollUtil.toList("ROLE_ADMIN","ROLE_USER"));
+        resourceRolesMap.put("/user/user/getUserInfo", CollUtil.toList("ROLE_ADMIN", "ROLE_USER"));
         redisService.setCacheMap(RedisConstant.RESOURCE_ROLES_MAP, resourceRolesMap);
     }
 }

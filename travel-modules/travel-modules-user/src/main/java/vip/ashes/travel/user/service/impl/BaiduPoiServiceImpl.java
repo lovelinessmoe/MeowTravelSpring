@@ -1,9 +1,9 @@
 package vip.ashes.travel.user.service.impl;
 
-import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import vip.ashes.travel.user.mapper.BaiduPoiMapper;
+import org.springframework.stereotype.Service;
 import vip.ashes.travel.user.entity.BaiduPoi;
+import vip.ashes.travel.user.mapper.BaiduPoiMapper;
 import vip.ashes.travel.user.service.BaiduPoiService;
 
 @Service
