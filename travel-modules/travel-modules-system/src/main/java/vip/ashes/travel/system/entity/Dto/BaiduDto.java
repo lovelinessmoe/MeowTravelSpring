@@ -1,4 +1,4 @@
-package vip.ashes.travel.system.entity.Vo;
+package vip.ashes.travel.system.entity.Dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
@@ -8,7 +8,7 @@ import java.util.List;
 
 @NoArgsConstructor
 @Data
-public class BaiduVo {
+public class BaiduDto {
     @JsonProperty("status")
     private Integer status;
     @JsonProperty("message")

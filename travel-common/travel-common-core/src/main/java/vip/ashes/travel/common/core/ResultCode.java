@@ -26,9 +26,11 @@ public enum ResultCode {
     USER_ACCOUNT_EMAIL_ALREADY_EXIST(2009, "账号已存在,请更换邮箱"),
     CAPTCHA_NULL(2010, "验证码不能为空"),
     CAPTCHA_NOT_EXIST(2011, "验证码不存在,请刷新验证码"),
+    USER_ACCESS_DENIED(2012, "权限不够，访问拒绝"),
 
     /* 业务错误 */
-    NO_PERMISSION(3001, "没有权限"),
+    ARTICLE_NOT_MODIFY(3001, "攻略未修改"),
+    ARTICLE_NOT_DELET(3002, "攻略未删除"),
 
 
     /*运行时异常*/

@@ -27,7 +27,6 @@ public class UserController {
     private final UserService userService;
     private final LoginUserUtil loginUserUtil;
 
-
     @SneakyThrows
     @GetMapping("/getUserInfo")
     public Result getUserInfo() {
@@ -59,8 +58,8 @@ public class UserController {
      * 删除用户
      */
     @PostMapping("/remove")
-    public Result remove(@RequestParam String ids) {
-        return Result.RCode(userService.removeById(ids), ResultCode.SUCCESS);
+    public Result remove(@RequestParam String userId) {
+        return Result.RCode(userService.removeById(userId), ResultCode.SUCCESS);
     }
 
     /**
@@ -77,9 +76,6 @@ public class UserController {
     @GetMapping("/list")
     public Result list(User user, PageDTO<User> query) {
         QueryWrapper<User> userQueryWrapper = new QueryWrapper<>(user);
-        //管理员的角色id
-        final int adminRoleNum = 1;
-        userQueryWrapper.ne(User.COL_ROLE_ID, adminRoleNum);
         PageDTO<User> pages = userService.page(query, userQueryWrapper);
         return Result.ok().data(pages);
     }

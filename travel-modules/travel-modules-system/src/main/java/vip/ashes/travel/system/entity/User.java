@@ -1,9 +1,7 @@
 package vip.ashes.travel.system.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,6 +10,7 @@ import java.io.Serializable;
 
 /**
  * 用户
+ * @author loveliness
  */
 @Data
 @AllArgsConstructor
@@ -32,7 +31,7 @@ public class User implements Serializable {
     /**
      * 主键
      */
-    @TableId(value = "user_id", type = IdType.INPUT)
+    @TableId(value = "user_id", type = IdType.ASSIGN_ID)
     private String userId;
     /**
      * 角色id
@@ -42,12 +41,12 @@ public class User implements Serializable {
     /**
      * 昵称
      */
-    @TableField(value = "user_name")
+    @TableField(value = "user_name", condition = SqlCondition.LIKE)
     private String userName;
     /**
      * 电话号
      */
-    @TableField(value = "telephone")
+    @TableField(value = "telephone", condition = SqlCondition.LIKE)
     private String telephone;
     /**
      * 年龄
@@ -57,12 +56,13 @@ public class User implements Serializable {
     /**
      * 登录密码
      */
+    @JsonIgnore
     @TableField(value = "password")
     private String password;
     /**
      * 邮箱
      */
-    @TableField(value = "email")
+    @TableField(value = "email", condition = SqlCondition.LIKE)
     private String email;
     /**
      * 头像地址

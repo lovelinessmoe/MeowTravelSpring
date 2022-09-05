@@ -13,6 +13,8 @@ import java.util.TreeMap;
 
 /**
  * 资源与角色匹配关系管理业务类
+ *
+ * @author loveliness
  */
 @Service
 public class ResourceServiceImpl {
@@ -25,14 +27,10 @@ public class ResourceServiceImpl {
     @PostConstruct
     public void initData() {
         resourceRolesMap = new TreeMap<>();
-        resourceRolesMap.put("/system/user/getUserInfo", CollUtil.toList("ROLE_ADMIN"));
-        resourceRolesMap.put("/system/user/submit", CollUtil.toList("ROLE_ADMIN"));
-        resourceRolesMap.put("/system/user/update", CollUtil.toList("ROLE_ADMIN"));
-        resourceRolesMap.put("/system/user/remove", CollUtil.toList("ROLE_ADMIN"));
-        resourceRolesMap.put("/system/user/removeMany", CollUtil.toList("ROLE_ADMIN"));
-        resourceRolesMap.put("/system/user/list", CollUtil.toList("ROLE_ADMIN"));
-
-        resourceRolesMap.put("/user/user/getUserInfo", CollUtil.toList("ROLE_ADMIN", "ROLE_USER"));
+        String systemPrefixUrl = "/system/";
+        resourceRolesMap.put(systemPrefixUrl + "**", CollUtil.toList("ROLE_ADMIN"));
+        String userPrefixUrl = "/user/";
+        resourceRolesMap.put(userPrefixUrl + "**", CollUtil.toList("ROLE_ADMIN", "ROLE_USER"));
         redisService.setCacheMap(RedisConstant.RESOURCE_ROLES_MAP, resourceRolesMap);
     }
 }

@@ -8,9 +8,16 @@ spring:
     nacos:
       discovery:
         server-addr: localhost:8848
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+  redis:
+    database: 0
+    port: 6379
+    host: localhost
+    password:
   datasource:
     url: jdbc:mysql://localhost:3306/Travel
-    username: root
+    username: travel
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.zaxxer.hikari.HikariDataSource

@@ -2,6 +2,7 @@ package vip.ashes.travel.system.entity.converter;
 
 
 import org.mapstruct.Mapper;
+import vip.ashes.travel.system.entity.User;
 
 /**
  * @author loveliness
@@ -15,6 +16,6 @@ public interface UserConverter {
      * @param user user对象
      * @return userVO对象
      */
-//    UserVO userToVO(User user);
+    //UserVO userToVO(User user);
 
 }

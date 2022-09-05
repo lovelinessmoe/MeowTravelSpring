@@ -6,8 +6,8 @@ package vip.ashes.travel.common.core.constant;
  */
 public final class UserConstants {
 
-    public static final String REGISTER_MAIL = "register";
-    public static final String MODIFY_INFORMATION_MAIL = "modifyInf";
-
-
+    public static final String REGISTER_MAIL = "register:";
+    public static final String MODIFY_INFORMATION_MAIL = "modifyInf:";
+    public static final String DICT = "dict:";
+    public static final String CAPTCHA = "captcha:";
 }

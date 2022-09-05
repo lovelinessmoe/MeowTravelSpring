@@ -43,6 +43,11 @@
 			<groupId>vip.ashes</groupId>
 			<artifactId>travel-common-core</artifactId>
 		</dependency>
+		<!-- Common Redis-->
+		<dependency>
+			<groupId>vip.ashes</groupId>
+			<artifactId>travel-common-redis</artifactId>
+		</dependency>
 	</dependencies>
 
 </project>

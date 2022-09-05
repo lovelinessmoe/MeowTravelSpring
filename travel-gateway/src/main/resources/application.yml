@@ -71,3 +71,4 @@ secure:
     urls: #配置白名单路径
       - "/auth/**"
       - "/user/auth/**"
+      - "/system/dict/**"

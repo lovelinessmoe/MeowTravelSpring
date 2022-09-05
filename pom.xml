@@ -43,15 +43,9 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<optional>true</optional>
 		</dependency>
-
-		<!-- bootstrap 启动器 -->
-		<!--<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-bootstrap</artifactId>
-		</dependency>-->
 	</dependencies>
+
 	<!-- 依赖声明 -->
 	<dependencyManagement>
 		<dependencies>
@@ -190,6 +184,12 @@
 				<artifactId>mapstruct-processor</artifactId>
 				<version>${mapstruct.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok-mapstruct-binding</artifactId>
+				<version>0.2.0</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
+
 </project>
