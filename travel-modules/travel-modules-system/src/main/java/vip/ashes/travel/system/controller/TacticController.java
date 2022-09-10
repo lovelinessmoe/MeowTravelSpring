@@ -26,15 +26,6 @@ public class TacticController {
     private final TacticService tacticService;
     private final LoginUserUtil loginUserUtil;
 
-    /**
-     * 详情
-     */
-    @GetMapping("/detail/{tacticId}")
-    public Result detail(@PathVariable("tacticId") String tacticId) {
-        TacticDetailVO tacticDetail = tacticService.getTacticDetail(tacticId);
-        return Result.ok().data(tacticDetail);
-    }
-
 
     /**
      * 新增或修改文章
@@ -101,5 +92,14 @@ public class TacticController {
         tacticUpdateWrapper.eq(Tactic.COL_TACTIC_ID, tacticId);
         //更新
         return Result.ok().data(tacticService.update(tacticUpdateWrapper));
+    }
+
+    /**
+     * 详情
+     */
+    @GetMapping("/detail/{tacticId}")
+    public Result detail(@PathVariable("tacticId") String tacticId) {
+        TacticDetailVO tacticDetail = tacticService.getTacticDetail(tacticId);
+        return Result.ok().data(tacticDetail);
     }
 }

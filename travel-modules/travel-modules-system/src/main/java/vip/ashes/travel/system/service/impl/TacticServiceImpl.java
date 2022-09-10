@@ -81,6 +81,6 @@ public class TacticServiceImpl extends ServiceImpl<TacticMapper, Tactic> impleme
 
     @Override
     public TacticDetailVO getTacticDetail(String tacticId) {
-        return tacticMapper.getTacticDetail(tacticId);
+        return tacticDetailMapper.getTacticDetail(tacticId);
     }
 }

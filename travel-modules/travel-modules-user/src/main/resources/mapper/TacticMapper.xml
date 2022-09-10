@@ -1,22 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="vip.ashes.travel.user.mapper.TacticMapper">
-  <resultMap id="BaseResultMap" type="vip.ashes.travel.user.entity.Tactic">
-    <!--@mbg.generated-->
-    <!--@Table Travel.tactic-->
-    <id column="tactic_id" jdbcType="CHAR" property="tacticId" />
-    <result column="title" jdbcType="VARCHAR" property="title" />
-    <result column="user_id" jdbcType="CHAR" property="userId" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="short_msg" jdbcType="CHAR" property="shortMsg" />
-    <result column="views_count" jdbcType="INTEGER" property="viewsCount" />
-    <result column="comments_count" jdbcType="INTEGER" property="commentsCount" />
-    <result column="is_top" jdbcType="TINYINT" property="isTop" />
-    <result column="img_url" jdbcType="VARCHAR" property="imgUrl" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    <!--@mbg.generated-->
-    tactic_id, title, user_id, create_time, short_msg, views_count, comments_count, is_top,
-    img_url
-  </sql>
+	<resultMap id="BaseResultMap" type="vip.ashes.travel.user.entity.Tactic">
+		<!--@mbg.generated-->
+		<!--@Table Travel.tactic-->
+		<id column="tactic_id" jdbcType="CHAR" property="tacticId"/>
+		<result column="title" jdbcType="VARCHAR" property="title"/>
+		<result column="user_id" jdbcType="CHAR" property="userId"/>
+		<result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+		<result column="short_msg" jdbcType="CHAR" property="shortMsg"/>
+		<result column="views_count" jdbcType="INTEGER" property="viewsCount"/>
+		<result column="comments_count" jdbcType="INTEGER" property="commentsCount"/>
+		<result column="is_top" jdbcType="TINYINT" property="isTop"/>
+		<result column="img_url" jdbcType="VARCHAR" property="imgUrl"/>
+	</resultMap>
+	<sql id="Base_Column_List">
+		<!--@mbg.generated-->
+		tactic_id, title, user_id, create_time, short_msg, views_count, comments_count, is_top,
+		img_url
+	</sql>
+	<select id="getTacticDetail" resultType="vip.ashes.travel.user.entity.Vo.TacticDetailVO">
+		select *
+		from tactic as t
+				     left join tactic_detail as td on t.tactic_id = td.tactic_id
+		where t.tactic_id = #{tacticId,jdbcType=VARCHAR}
+	</select>
 </mapper>

@@ -20,7 +20,7 @@ public interface CommentService extends IService<Comment> {
      * @param articleId 文章id
      * @return 评论列表
      */
-    List<Tree<String>> getCommentByArticleId(String articleId);
+    List<Tree<String>> getCommentByTacticId(String articleId);
 
     /**
      * 更新评论为已删除

@@ -69,6 +69,13 @@ spring:
 secure:
   ignore:
     urls: #配置白名单路径
+      # 登录获取token
       - "/auth/**"
+      # 注册验证码等
       - "/user/auth/**"
+      # 查看攻略详情
+      - "/user/tactic/detail/**"
+      # 查看攻略
+      - "/user/tactic/list"
+      # 字典
       - "/system/dict/**"

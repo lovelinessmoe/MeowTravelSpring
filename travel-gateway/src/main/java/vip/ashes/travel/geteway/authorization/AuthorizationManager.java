@@ -14,6 +14,7 @@ import vip.ashes.travel.common.security.constants.SecurityConstants;
 
 import javax.annotation.Resource;
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -33,7 +34,7 @@ public class AuthorizationManager implements ReactiveAuthorizationManager<Author
         //从Redis中获取当前路径可访问角色列表
         URI uri = authorizationContext.getExchange().getRequest().getURI();
         Map<String, List> map = redisService.getCacheMap(RedisConstant.RESOURCE_ROLES_MAP);
-        List<String> authorities = null;
+        List<String> authorities = new ArrayList<>();
         AntPathMatcher antPathMatcher = new AntPathMatcher();
         for (Map.Entry<String, List> next : map.entrySet()) {
             if (antPathMatcher.match(next.getKey(), uri.getPath())) {

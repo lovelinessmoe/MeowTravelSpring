@@ -63,23 +63,7 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok-mapstruct-binding</artifactId>
 		</dependency>
+
 	</dependencies>
-	<!--<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<version>2.7.3</version>
-				<executions>
-					<execution>
-						<phase>none</phase>
-					</execution>
-				</executions>
-				<configuration>
-					<classifier>execute</classifier>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>-->
 
 </project>

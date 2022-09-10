@@ -47,7 +47,17 @@
 			<groupId>vip.ashes</groupId>
 			<artifactId>travel-common-redis</artifactId>
 		</dependency>
-
+		<!--又拍云储存-->
+		<dependency>
+			<groupId>com.upyun</groupId>
+			<artifactId>java-sdk</artifactId>
+			<version>4.2.3</version>
+		</dependency>
+		<!--邮件模块依赖-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
 	</dependencies>
 
 </project>

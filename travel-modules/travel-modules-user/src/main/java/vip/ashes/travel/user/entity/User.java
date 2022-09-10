@@ -32,7 +32,7 @@ public class User implements Serializable {
     /**
      * 主键
      */
-    @TableId(value = "user_id", type = IdType.ASSIGN_ID)
+    @TableId(value = "user_id", type = IdType.ASSIGN_UUID)
     private String userId;
     /**
      * 角色id

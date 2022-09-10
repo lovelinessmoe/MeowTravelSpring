@@ -51,6 +51,7 @@ public interface UserService extends IService<User> {
      * 给用户发送验证码
      * 修改用户信息时的方法
      *
+     * @param userId 用户id
      * @return Result
      */
     Result modifyInfMail(String userId);

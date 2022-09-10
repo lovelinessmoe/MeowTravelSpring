@@ -23,7 +23,7 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> impl
 
 
     @Override
-    public List<Tree<String>> getCommentByArticleId(String articleId) {
+    public List<Tree<String>> getCommentByTacticId(String articleId) {
         List<CommentVO> comments = commentMapper.getCommentByTacticId(articleId);
 
         //转换成树

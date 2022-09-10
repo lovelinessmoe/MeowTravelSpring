@@ -23,6 +23,20 @@ spring:
       max-lifetime: 1800000
       connection-timeout: 30000
       connection-test-query: SELECT 1
+  #email
+  mail:
+    host: smtp.mxhichina.com
+    username: admin@ashes.vip
+    password: CAOshunmiao6moe
+    port: 465
+    #设置为SSL协议
+    properties:
+      mail:
+        smtp:
+          socketFactory:
+            class: javax.net.ssl.SSLSocketFactory
+      from: admin@ashes.vip
+
 mybatis-plus:
   # 在classpath前添加星号可以使项目热加载成功
   # 自定义xml sql文件需要配置这个
@@ -38,6 +52,14 @@ mybatis-plus:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   type-aliases-package: vip.ashes.travel
 #    配置基础包名
+
+
+
+# 配置你的又拍云
+up-yun:
+  user-name: loveliness
+  password: CKKSR0F6Y09agZ0qEdPLv99eZgGbC1mY
+  bucket: loveliness
 
 logging:
   level:

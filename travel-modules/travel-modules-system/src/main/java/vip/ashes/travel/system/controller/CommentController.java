@@ -19,9 +19,9 @@ public class CommentController {
 
     private final CommentService commentService;
 
-    @GetMapping("/getComment/{articleId}")
-    public Result getCommentByArticleId(@PathVariable String articleId) {
-        return Result.ok().data(commentService.getCommentByArticleId(articleId));
+    @GetMapping("/getComment/{tacticId}")
+    public Result getCommentByTacticId(@PathVariable String tacticId) {
+        return Result.ok().data(commentService.getCommentByTacticId(tacticId));
     }
 
     @GetMapping("/remove/{commentId}")

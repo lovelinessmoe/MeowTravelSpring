@@ -19,10 +19,4 @@
 		tactic_id, title, user_id, create_time, short_msg, views_count, comments_count, is_top,
 		img_url
 	</sql>
-	<select id="getTacticDetail" resultType="vip.ashes.travel.system.entity.Vo.TacticDetailVO">
-		select *
-		from tactic as t
-				     left join tactic_detail as td on t.tactic_id = td.tactic_id
-		where t.tactic_id = #{tacticId,jdbcType=VARCHAR}
-	</select>
 </mapper>

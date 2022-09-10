@@ -28,13 +28,6 @@ public interface TacticService extends IService<Tactic> {
      */
     Result removeTactic(String TacticId);
 
-    /**
-     * 获取文章细节
-     *
-     * @param TacticId 文章id
-     * @return 文章对象的文章detail对象的相同
-     */
-    TacticDetailVO getTacticDetail(String TacticId);
 
     /**
      * 删除多个文章
@@ -44,4 +37,11 @@ public interface TacticService extends IService<Tactic> {
      */
     Result removeMany(List<Tactic> TacticList);
 
+    /**
+     * 获取文章细节
+     *
+     * @param tacticId 文章id
+     * @return 文章对象的文章detail对象的相同
+     */
+    TacticDetailVO getTacticDetail(String tacticId);
 }

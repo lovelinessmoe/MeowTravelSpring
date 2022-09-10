@@ -14,8 +14,10 @@ import vip.ashes.travel.common.core.ResultCode;
 import vip.ashes.travel.common.core.constant.UserConstants;
 import vip.ashes.travel.common.redis.service.RedisService;
 import vip.ashes.travel.user.entity.User;
+import vip.ashes.travel.user.entity.Vo.MailVo;
 import vip.ashes.travel.user.mapper.UserMapper;
 import vip.ashes.travel.user.service.UserService;
+import vip.ashes.travel.user.utils.MailUtils;
 
 import java.util.concurrent.TimeUnit;
 
@@ -98,9 +100,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         MailVo mailVo = new MailVo();
         mailVo.setFrom("admin@javaee.xyz");
         mailVo.setTo(user.getEmail());
-        mailVo.setSubject("Blood注册验证码");
+        mailVo.setSubject("喵喵出行注册验证码");
         mailVo.setText("<div style=\"margin: 0 auto;width: 500px;text-align: center;\">\n" +
-                "        <h3>您好" + user.getUserName() + "，欢迎注册喵喵博客，您的邮箱刚刚在Blood注册，为了保护您的信息安全，我们来信进行邮箱验证，如果此操作不是由您发起的，请忽略此邮件。</h3>\n" +
+                "        <h3>您好" + user.getUserName() + "，欢迎注册喵喵博客，您的邮箱刚刚在喵喵出行注册，为了保护您的信息安全，我们来信进行邮箱验证，如果此操作不是由您发起的，请忽略此邮件。</h3>\n" +
                 "        <h1>您的验证码为<span style=\"color: red;\">" + code + "</span></h1>\n" +
                 "</div>");
 
@@ -121,17 +123,17 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         // 5min 过期时间
         redisService.expire("modifyInf" + userId, 60 * 5, TimeUnit.SECONDS);
 
-        /*//发送邮件
+        //发送邮件
         MailVo mailVo = new MailVo();
-        mailVo.setFrom("admin@javaee.xyz");
+        mailVo.setFrom("admin@ashes.vip");
         mailVo.setTo(user.getEmail());
-        mailVo.setSubject("Blood修改信息验证码");
+        mailVo.setSubject("喵喵出行修改信息验证码");
         mailVo.setText("<div style=\"margin: 0 auto;width: 500px;text-align: center;\">\n" +
-                "        <h3>您好" + user.getUserName() + "，您的邮箱刚刚在Blood进行修改信息操作，为了保护您的信息安全，我们来信进行邮箱验证，如果此操作不是由您发起的，请忽略此邮件。</h3>\n" +
+                "        <h3>您好" + user.getUserName() + "，您的邮箱刚刚在喵喵出行进行修改信息操作，为了保护您的信息安全，我们来信进行邮箱验证，如果此操作不是由您发起的，请忽略此邮件。</h3>\n" +
                 "        <h1>您的验证码为<span style=\"color: red;\">" + code + "</span></h1>\n" +
                 "</div>");
 
-        MailUtils.sendMail(mailVo);*/
+        MailUtils.sendMail(mailVo);
         return Result.ok();
     }
 }

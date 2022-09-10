@@ -15,5 +15,16 @@
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
     comment_id, user_id, content, create_time, p_id, `level`, tactic_id
-  </sql>
+  </sql><select id="getCommentByTacticId" resultType="vip.ashes.travel.user.entity.Vo.CommentVO">
+  select c.comment_id,
+		       c.user_id,
+		       c.content,
+		       c.create_time,
+		       c.p_id,
+		       u.user_name,
+		       u.avatar_url
+		from comment c
+				     left join user u on c.user_id = u.user_id
+		where c.tactic_id = #{tacticId,jdbcType=VARCHAR}
+</select>
 </mapper>

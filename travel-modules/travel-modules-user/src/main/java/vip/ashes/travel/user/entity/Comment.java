@@ -1,9 +1,6 @@
 package vip.ashes.travel.user.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,7 +24,7 @@ public class Comment implements Serializable {
     public static final String COL_LEVEL = "level";
     public static final String COL_TACTIC_ID = "tactic_id";
     private static final long serialVersionUID = 1L;
-    @TableId(value = "comment_id", type = IdType.INPUT)
+    @TableId(value = "comment_id", type = IdType.ASSIGN_UUID)
     private String commentId;
     /**
      * 评论人
@@ -42,7 +39,7 @@ public class Comment implements Serializable {
     /**
      * 创建时间
      */
-    @TableField(value = "create_time")
+    @TableField(value = "create_time",fill = FieldFill.INSERT_UPDATE)
     private Date createTime;
     /**
      * 父id

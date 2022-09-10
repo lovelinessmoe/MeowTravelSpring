@@ -7,11 +7,5 @@ import vip.ashes.travel.system.entity.Vo.TacticDetailVO;
 
 @Mapper
 public interface TacticMapper extends BaseMapper<Tactic> {
-    /**
-     * 通过id获取文章
-     *
-     * @param tacticId 文章ID
-     * @return 文章对象的文章detail对象的相同
-     */
-    TacticDetailVO getTacticDetail(String tacticId);
+
 }

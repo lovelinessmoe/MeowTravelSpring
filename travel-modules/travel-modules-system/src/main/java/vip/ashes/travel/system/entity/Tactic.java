@@ -41,7 +41,7 @@ public class Tactic implements Serializable {
     /**
      * 发布时间
      */
-    @TableField(value = "create_time",fill = FieldFill.INSERT_UPDATE)
+    @TableField(value = "create_time",fill = FieldFill.INSERT)
     private Date createTime;
     /**
      * 文章简介
