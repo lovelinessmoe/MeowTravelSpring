@@ -3,7 +3,7 @@
 <mapper namespace="vip.ashes.travel.auth.mapper.AuthUserMapper">
   <resultMap id="BaseResultMap" type="vip.ashes.travel.auth.entity.User">
     <!--@mbg.generated-->
-    <!--@Table `user`-->
+    <!--@Table Travel.`user`-->
     <id column="user_id" jdbcType="CHAR" property="userId" />
     <result column="role_id" jdbcType="INTEGER" property="roleId" />
     <result column="user_name" jdbcType="CHAR" property="userName" />
@@ -12,12 +12,14 @@
     <result column="password" jdbcType="CHAR" property="password" />
     <result column="email" jdbcType="VARCHAR" property="email" />
     <result column="avatar_url" jdbcType="VARCHAR" property="avatarUrl" />
-    <result column="location_ lat" jdbcType="FLOAT" property="locationLat" />
-    <result column="location_ lng" jdbcType="FLOAT" property="locationLng" />
+    <result column="province" jdbcType="CHAR" property="province" />
+    <result column="city" jdbcType="CHAR" property="city" />
+    <result column="district" jdbcType="CHAR" property="district" />
+    <result column="street" jdbcType="CHAR" property="street" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    user_id, role_id, user_name, telephone, age, `password`, email, avatar_url, `location_ lat`,
-    `location_ lng`
+    user_id, role_id, user_name, telephone, age, `password`, email, avatar_url, province,
+    city, district, street
   </sql>
 </mapper>

@@ -12,12 +12,14 @@
     <result column="password" jdbcType="CHAR" property="password" />
     <result column="email" jdbcType="VARCHAR" property="email" />
     <result column="avatar_url" jdbcType="VARCHAR" property="avatarUrl" />
-    <result column="location_lat" jdbcType="FLOAT" property="locationLat" />
-    <result column="location_lng" jdbcType="FLOAT" property="locationLng" />
+    <result column="province" jdbcType="CHAR" property="province" />
+    <result column="city" jdbcType="CHAR" property="city" />
+    <result column="district" jdbcType="CHAR" property="district" />
+    <result column="street" jdbcType="CHAR" property="street" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    user_id, role_id, user_name, telephone, age, `password`, email, avatar_url, location_lat,
-    location_lng
+    user_id, role_id, user_name, telephone, age, `password`, email, avatar_url, province, 
+    city, district, street
   </sql>
 </mapper>

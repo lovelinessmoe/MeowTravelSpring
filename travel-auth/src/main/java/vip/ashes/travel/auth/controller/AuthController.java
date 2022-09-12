@@ -1,5 +1,6 @@
 package vip.ashes.travel.auth.controller;
 
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -47,10 +48,31 @@ public class AuthController {
                 .token(SecurityConstants.TOKEN_PREFIX + oAuth2AccessToken.getValue())
                 .expiresIn(oAuth2AccessToken.getExpiresIn()).build();
 
-        //UserInfo
+        //获取当前登录用户
         String email = parameters.get("email");
         QueryWrapper<User> eq = new QueryWrapper<User>().eq(User.COL_EMAIL, email);
         User user = authUserService.getOne(eq);
+
+        String province = parameters.get("province");
+        String city = parameters.get("city");
+        String district = parameters.get("district");
+        String street = parameters.get("street");
+
+        //如果都是空不更新，有一个不是空更新数据
+        //全为空就是没有定位到
+        if (!StrUtil.isAllBlank(province, city, district, street)) {
+            //更新区域信息
+            User updateUser = User.builder()
+                    .userId(user.getUserId())
+                    .province(province)
+                    .city(city)
+                    .district(district)
+                    .street(street)
+                    .build();
+            authUserService.updateById(updateUser);
+        }
+
+        //UserInfo
         user.setPassword(null);
         Map<String, Object> map = objectMapper.readValue(objectMapper.writeValueAsString(user), Map.class);
         map.put("auth", oauth2TokenDto);

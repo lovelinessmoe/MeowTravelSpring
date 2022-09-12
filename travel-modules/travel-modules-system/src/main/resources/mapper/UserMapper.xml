@@ -1,23 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="vip.ashes.travel.system.mapper.UserMapper">
-  <resultMap id="BaseResultMap" type="vip.ashes.travel.system.entity.User">
-    <!--@mbg.generated-->
-    <!--@Table Travel.`user`-->
-    <id column="user_id" jdbcType="CHAR" property="userId" />
-    <result column="role_id" jdbcType="INTEGER" property="roleId" />
-    <result column="user_name" jdbcType="CHAR" property="userName" />
-    <result column="telephone" jdbcType="CHAR" property="telephone" />
-    <result column="age" jdbcType="INTEGER" property="age" />
-    <result column="password" jdbcType="CHAR" property="password" />
-    <result column="email" jdbcType="VARCHAR" property="email" />
-    <result column="avatar_url" jdbcType="VARCHAR" property="avatarUrl" />
-    <result column="location_lat" jdbcType="FLOAT" property="locationLat" />
-    <result column="location_lng" jdbcType="FLOAT" property="locationLng" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    <!--@mbg.generated-->
-    user_id, role_id, user_name, telephone, age, `password`, email, avatar_url, location_lat,
-    location_lng
-  </sql>
+	<resultMap id="BaseResultMap" type="vip.ashes.travel.system.entity.User">
+		<!--@mbg.generated-->
+		<!--@Table Travel.`user`-->
+		<id column="user_id" jdbcType="CHAR" property="userId"/>
+		<result column="role_id" jdbcType="INTEGER" property="roleId"/>
+		<result column="user_name" jdbcType="CHAR" property="userName"/>
+		<result column="telephone" jdbcType="CHAR" property="telephone"/>
+		<result column="age" jdbcType="INTEGER" property="age"/>
+		<result column="password" jdbcType="CHAR" property="password"/>
+		<result column="email" jdbcType="VARCHAR" property="email"/>
+		<result column="avatar_url" jdbcType="VARCHAR" property="avatarUrl"/>
+		<result column="province" jdbcType="CHAR" property="province"/>
+		<result column="city" jdbcType="CHAR" property="city"/>
+		<result column="district" jdbcType="CHAR" property="district"/>
+		<result column="street" jdbcType="CHAR" property="street"/>
+	</resultMap>
+	<sql id="Base_Column_List">
+		<!--@mbg.generated-->
+		user_id, role_id, user_name, telephone, age, `password`, email, avatar_url, province,
+		city, district, street
+	</sql>
+	<select id="getUserLocation" resultType="vip.ashes.travel.system.entity.Vo.UserLocationVo">
+		SELECT city, COUNT(1) as c_count
+		FROM `user`
+		GROUP BY city
+	</select>
 </mapper>

@@ -63,7 +63,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     public Result generateCaptcha() {
         //定义图形验证码的长、宽、验证码字符数、干扰元素个数
         CircleCaptcha captcha = CaptchaUtil.createCircleCaptcha(150, 30, 4, 4);
-        String captchaVerification = UserConstants.CAPTCHA+ IdUtil.fastSimpleUUID();
+        String captchaVerification = UserConstants.CAPTCHA + IdUtil.fastSimpleUUID();
         String code = captcha.getCode();
         redisService.setCacheObject(captchaVerification, code);
         redisService.expire(captchaVerification, 60 * 5, TimeUnit.SECONDS);
@@ -137,3 +137,4 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return Result.ok();
     }
 }
+
