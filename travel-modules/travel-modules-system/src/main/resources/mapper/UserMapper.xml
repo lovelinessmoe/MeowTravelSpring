@@ -25,6 +25,6 @@
 	<select id="getUserLocation" resultType="vip.ashes.travel.system.entity.Vo.UserLocationVo">
 		SELECT city, COUNT(1) as c_count
 		FROM `user`
-		GROUP BY city
+		GROUP BY city ORDER BY c_count DESC
 	</select>
 </mapper>

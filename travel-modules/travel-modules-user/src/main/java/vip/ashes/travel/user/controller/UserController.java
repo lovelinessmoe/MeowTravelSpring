@@ -33,6 +33,7 @@ public class UserController {
     public Result getUserInfo() {
         User currentUser = loginUserUtil.getCurrentUser();
         Collection currentUserAuth = loginUserUtil.getCurrentUserAuth();
+        currentUser.setPassword(null);
         ObjectMapper objectMapper = new ObjectMapper();
         Map<String, String> map = objectMapper.readValue(objectMapper.writeValueAsString(currentUser), Map.class);
         map.put("auth", currentUserAuth.toString());

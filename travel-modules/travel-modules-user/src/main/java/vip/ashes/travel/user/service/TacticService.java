@@ -23,4 +23,6 @@ public interface TacticService extends IService<Tactic> {
      * @return 是否成功
      */
     Result removeTactic(String tacticId);
+
+    boolean addCommentNum(String tacticId);
 }

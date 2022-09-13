@@ -24,8 +24,6 @@ import java.util.ArrayList;
 public class TacticController {
 
     private final TacticService tacticService;
-    private final LoginUserUtil loginUserUtil;
-
 
     /**
      * 新增或修改文章
@@ -75,8 +73,6 @@ public class TacticController {
      */
     @PostMapping("/saveOrUpdateTactic")
     public Result saveOrUpdateTactic(@RequestBody TacticDetailVO tacticVO) {
-        User currentUser = loginUserUtil.getCurrentUser();
-        tacticVO.setUserId(currentUser.getUserId());
         return tacticService.saveOrUpdateTactic(tacticVO);
     }
 

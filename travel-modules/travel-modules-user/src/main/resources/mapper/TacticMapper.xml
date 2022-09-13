@@ -25,4 +25,9 @@
 				     left join tactic_detail as td on t.tactic_id = td.tactic_id
 		where t.tactic_id = #{tacticId,jdbcType=VARCHAR}
 	</select>
+	<update id="addCommentNum">
+		update tactic
+		set comments_count = comments_count + 1
+		where tactic_id = #{tacticId,jdbcType=VARCHAR}
+	</update>
 </mapper>

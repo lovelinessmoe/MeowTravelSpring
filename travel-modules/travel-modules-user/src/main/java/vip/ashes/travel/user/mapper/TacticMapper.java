@@ -14,4 +14,6 @@ public interface TacticMapper extends BaseMapper<Tactic> {
      * @return 文章对象的文章detail对象的相同
      */
     TacticDetailVO getTacticDetail(String tacticId);
+
+    boolean addCommentNum(String tacticId);
 }

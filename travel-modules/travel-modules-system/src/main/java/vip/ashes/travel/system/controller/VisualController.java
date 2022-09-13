@@ -30,7 +30,7 @@ public class VisualController {
         if (userLocation == null) {
             userLocation = userService.getUserLocation();
             redisService.setCacheObject(UserConstants.VISUAL_USER_LOCATION, userLocation);
-            redisService.expire(UserConstants.VISUAL_USER_LOCATION, 10 * 60);
+            redisService.expire(UserConstants.VISUAL_USER_LOCATION, 30 * 60);
         }
         return Result.ok().data(userLocation);
     }

@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import vip.ashes.travel.common.core.Result;
 import vip.ashes.travel.user.entity.Comment;
 import vip.ashes.travel.user.service.CommentService;
+import vip.ashes.travel.user.service.TacticService;
 import vip.ashes.travel.user.utils.LoginUserUtil;
 
 /**
@@ -16,6 +17,7 @@ import vip.ashes.travel.user.utils.LoginUserUtil;
 @RequestMapping("/comment")
 public class CommonController {
     private final CommentService commentService;
+    private final TacticService tacticService;
     private final LoginUserUtil loginUserUtil;
 
 
@@ -34,6 +36,7 @@ public class CommonController {
         String userId = loginUserUtil.getCurrentUser().getUserId();
         comment.setUserId(userId);
         boolean save = commentService.save(comment);
+        tacticService.addCommentNum(comment.getTacticId());
         if (save) {
             return Result.ok();
         } else {

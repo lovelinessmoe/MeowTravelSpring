@@ -38,4 +38,9 @@ public class TacticServiceImpl extends ServiceImpl<TacticMapper, Tactic> impleme
         }
         return Result.ok();
     }
+
+    @Override
+    public boolean addCommentNum(String tacticId) {
+        return tacticMapper.addCommentNum(tacticId);
+    }
 }
