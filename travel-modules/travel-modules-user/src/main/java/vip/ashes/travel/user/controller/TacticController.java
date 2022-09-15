@@ -1,5 +1,6 @@
 package vip.ashes.travel.user.controller;
 
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.PageDTO;
 import lombok.AllArgsConstructor;
@@ -44,19 +45,31 @@ public class TacticController {
      */
     @PostMapping("/remove")
     public Result remove(@RequestParam String tacticId) {
-        return tacticService.removeTactic(tacticId);
+        String userId = loginUserUtil.getCurrentUser().getUserId();
+        Tactic byId = tacticService.getById(tacticId);
+        if (byId.getUserId().equals(userId)) {
+            return tacticService.removeTactic(tacticId);
+        } else {
+            return Result.error().message("这不是你发布的攻略");
+        }
     }
 
     /**
      * 分页 文章
      */
     @GetMapping("/list")
-    public Result list(Tactic tactic, PageDTO<Tactic> query) {
-        QueryWrapper<Tactic> articleQueryWrapper = new QueryWrapper<>(tactic);
-        articleQueryWrapper.orderByDesc(Tactic.COL_IS_TOP);
-        articleQueryWrapper.orderByDesc(Tactic.COL_VIEWS_COUNT);
-        articleQueryWrapper.orderByDesc(Tactic.COL_COMMENTS_COUNT);
-        articleQueryWrapper.orderByDesc(Tactic.COL_CREATE_TIME);
+    public Result list(String key, PageDTO<Tactic> query) {
+        QueryWrapper<Tactic> articleQueryWrapper = new QueryWrapper<>();
+        if (!StrUtil.isBlank(key)) {
+            articleQueryWrapper.like(Tactic.COL_TITLE, key).or()
+                    .like(Tactic.COL_SHORT_MSG, key).or()
+                    .like(Tactic.COL_TACTIC_ID, key);
+        }
+        articleQueryWrapper.orderByDesc(Tactic.COL_IS_TOP)
+                .orderByDesc(Tactic.COL_CREATE_TIME)
+                .orderByDesc(Tactic.COL_VIEWS_COUNT)
+                .orderByDesc(Tactic.COL_COMMENTS_COUNT);
+
         PageDTO<Tactic> pages = tacticService.page(query, articleQueryWrapper);
 
         return Result.ok()
@@ -82,7 +95,7 @@ public class TacticController {
             tacticService.save(tactic);
             tacticDetailService.save(tacticDetail);
         } catch (Exception e) {
-            System.out.println(e.getStackTrace());
+            e.printStackTrace();
             //手动回滚事务
             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
             return Result.RCode(false, ResultCode.ARTICLE_NOT_MODIFY);

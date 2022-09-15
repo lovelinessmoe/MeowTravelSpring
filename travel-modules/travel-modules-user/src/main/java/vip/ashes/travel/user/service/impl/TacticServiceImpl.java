@@ -36,7 +36,7 @@ public class TacticServiceImpl extends ServiceImpl<TacticMapper, Tactic> impleme
             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
             return Result.RCode(false, ResultCode.ARTICLE_NOT_DELET);
         }
-        return Result.ok();
+        return Result.ok().message("删除成功");
     }
 
     @Override

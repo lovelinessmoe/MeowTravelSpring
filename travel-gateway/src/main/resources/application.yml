@@ -35,6 +35,12 @@ spring:
             - Path=/user/**
           filters:
             - StripPrefix=1
+        - id: travel-moudel-map-route
+          uri: lb://travel-moudel-map
+          predicates:
+            - Path=/map/**
+          filters:
+            - StripPrefix=1
       discovery:
         locator:
           enabled: true #开启从注册中心动态创建路由的功能
@@ -79,3 +85,6 @@ secure:
       - "/user/tactic/list"
       # 字典
       - "/system/dict/**"
+      # 地图检索建议
+      - "/map/map/suggestion"
+      - "/map/map/search"

@@ -13,15 +13,7 @@ import java.util.Date;
 @NoArgsConstructor
 @TableName(value = "Travel.tactic")
 public class Tactic implements Serializable {
-    public static final String COL_TACTIC_ID = "tactic_id";
-    public static final String COL_TITLE = "title";
-    public static final String COL_USER_ID = "user_id";
-    public static final String COL_CREATE_TIME = "create_time";
-    public static final String COL_SHORT_MSG = "short_msg";
-    public static final String COL_VIEWS_COUNT = "views_count";
-    public static final String COL_COMMENTS_COUNT = "comments_count";
-    public static final String COL_IS_TOP = "is_top";
-    public static final String COL_IMG_URL = "img_url";
+
     private static final long serialVersionUID = 1L;
     /**
      * 文章id/英文
@@ -31,7 +23,7 @@ public class Tactic implements Serializable {
     /**
      * 文章名称
      */
-    @TableField(value = "title")
+    @TableField(value = "title", condition = SqlCondition.LIKE)
     private String title;
     /**
      * 发表用户
@@ -41,12 +33,12 @@ public class Tactic implements Serializable {
     /**
      * 发布时间
      */
-    @TableField(value = "create_time",fill = FieldFill.INSERT)
+    @TableField(value = "create_time", fill = FieldFill.INSERT)
     private Date createTime;
     /**
      * 文章简介
      */
-    @TableField(value = "short_msg")
+    @TableField(value = "short_msg", condition = SqlCondition.LIKE)
     private String shortMsg;
     /**
      * 查看人数
@@ -68,4 +60,15 @@ public class Tactic implements Serializable {
      */
     @TableField(value = "img_url")
     private String imgUrl;
+
+
+    public static final String COL_TACTIC_ID = "tactic_id";
+    public static final String COL_TITLE = "title";
+    public static final String COL_USER_ID = "user_id";
+    public static final String COL_CREATE_TIME = "create_time";
+    public static final String COL_SHORT_MSG = "short_msg";
+    public static final String COL_VIEWS_COUNT = "views_count";
+    public static final String COL_COMMENTS_COUNT = "comments_count";
+    public static final String COL_IS_TOP = "is_top";
+    public static final String COL_IMG_URL = "img_url";
 }
