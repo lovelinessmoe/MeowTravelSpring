@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="vip.ashes.travel.system.mapper.BaiduPoiMapper">
-  <resultMap id="BaseResultMap" type="vip.ashes.travel.system.entity.BaiduPoi">
+<mapper namespace="vip.ashes.travel.map.mapper.BaiduPoiMapper">
+  <resultMap id="BaseResultMap" type="vip.ashes.travel.map.entity.BaiduPoi">
     <!--@mbg.generated-->
     <!--@Table Travel.baidu_poi-->
     <id column="uid" jdbcType="CHAR" property="uid" />

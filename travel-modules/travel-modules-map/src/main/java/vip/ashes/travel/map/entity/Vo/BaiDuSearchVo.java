@@ -13,10 +13,13 @@ import java.util.List;
 @Data
 public class BaiDuSearchVo {
 
+
     @JsonProperty("status")
     private Integer status;
     @JsonProperty("message")
     private String message;
+    @JsonProperty("total")
+    private Integer total;
     @JsonProperty("result_type")
     private String resultType;
     @JsonProperty("results")

@@ -88,3 +88,4 @@ secure:
       # 地图检索建议
       - "/map/map/suggestion"
       - "/map/map/search"
+      - "/map/map/getDetailById/**"
