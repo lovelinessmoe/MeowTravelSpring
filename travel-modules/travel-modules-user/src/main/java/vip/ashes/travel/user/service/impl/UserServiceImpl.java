@@ -98,7 +98,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
         /*//发送邮件
         MailVo mailVo = new MailVo();
-        mailVo.setFrom("admin@javaee.xyz");
+        mailVo.setFrom("admin@ashes.vip");
         mailVo.setTo(user.getEmail());
         mailVo.setSubject("喵喵出行注册验证码");
         mailVo.setText("<div style=\"margin: 0 auto;width: 500px;text-align: center;\">\n" +

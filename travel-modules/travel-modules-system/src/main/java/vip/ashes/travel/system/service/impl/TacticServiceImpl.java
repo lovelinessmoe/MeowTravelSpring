@@ -84,3 +84,4 @@ public class TacticServiceImpl extends ServiceImpl<TacticMapper, Tactic> impleme
         return tacticDetailMapper.getTacticDetail(tacticId);
     }
 }
+

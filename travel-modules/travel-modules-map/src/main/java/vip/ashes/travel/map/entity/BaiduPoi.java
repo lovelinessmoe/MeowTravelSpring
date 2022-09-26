@@ -1,9 +1,7 @@
 package vip.ashes.travel.map.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
+
 import java.io.Serializable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,13 +21,13 @@ public class BaiduPoi implements Serializable {
     /**
      * 名称
      */
-    @TableField(value = "name")
+    @TableField(value = "name",condition = SqlCondition.LIKE)
     private String name;
 
     /**
      * poi地址信息
      */
-    @TableField(value = "address")
+    @TableField(value = "address",condition = SqlCondition.LIKE)
     private String address;
 
     /**
@@ -68,6 +66,18 @@ public class BaiduPoi implements Serializable {
     @TableField(value = "location_lng")
     private Double locationLng;
 
+    /**
+     * 景点/酒店图片
+     */
+    @TableField(value = "poi_photo_url")
+    private String poiPhotoUrl;
+
+    /**
+     * 0景点 1酒店
+     */
+    @TableField(value = "type")
+    private Byte type;
+
     private static final long serialVersionUID = 1L;
 
     public static final String COL_UID = "uid";
@@ -87,4 +97,8 @@ public class BaiduPoi implements Serializable {
     public static final String COL_LOCATION_LAT = "location_lat";
 
     public static final String COL_LOCATION_LNG = "location_lng";
+
+    public static final String COL_POI_PHOTO_URL = "poi_photo_url";
+
+    public static final String COL_TYPE = "type";
 }

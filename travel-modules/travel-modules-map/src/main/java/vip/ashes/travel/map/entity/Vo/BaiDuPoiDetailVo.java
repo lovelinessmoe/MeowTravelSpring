@@ -11,7 +11,8 @@ import java.util.List;
  */
 @NoArgsConstructor
 @Data
-public class BaiDuPoiDetailVo{
+public class BaiDuPoiDetailVo {
+
 
     @JsonProperty("status")
     private Integer status;
@@ -66,6 +67,22 @@ public class BaiDuPoiDetailVo{
             private String shopHours;
             @JsonProperty("alias")
             private List<String> alias;
+            @JsonProperty("detail_url")
+            private String detailUrl;
+            @JsonProperty("type")
+            private String type;
+            @JsonProperty("overall_rating")
+            private String overallRating;
+            @JsonProperty("service_rating")
+            private String serviceRating;
+            @JsonProperty("environment_rating")
+            private String environmentRating;
+            @JsonProperty("image_num")
+            private String imageNum;
+            @JsonProperty("comment_num")
+            private String commentNum;
+            @JsonProperty("content_tag")
+            private String contentTag;
 
             @NoArgsConstructor
             @Data

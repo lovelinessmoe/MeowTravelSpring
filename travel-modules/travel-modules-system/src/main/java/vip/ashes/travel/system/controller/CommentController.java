@@ -19,11 +19,21 @@ public class CommentController {
 
     private final CommentService commentService;
 
+    /**
+     * 获取某个文章的评论
+     * @param tacticId 文章id
+     * @return 评论
+     */
     @GetMapping("/getComment/{tacticId}")
     public Result getCommentByTacticId(@PathVariable String tacticId) {
         return Result.ok().data(commentService.getCommentByTacticId(tacticId));
     }
 
+    /**
+     * 删除评论
+     * @param commentId 评论id
+     * @return 成功与否
+     */
     @GetMapping("/remove/{commentId}")
     public Result remove(@PathVariable String commentId) {
         return Result.ok().data(commentService.removeCommentById(commentId));

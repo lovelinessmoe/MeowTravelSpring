@@ -36,6 +36,12 @@ spring:
           socketFactory:
             class: javax.net.ssl.SSLSocketFactory
       from: admin@ashes.vip
+  servlet:
+    multipart:
+      # 最大支持文件大小
+      max-file-size: 1000MB
+      # 最大支持请求大小
+      max-request-size: 1000MB
 
 mybatis-plus:
   # 在classpath前添加星号可以使项目热加载成功

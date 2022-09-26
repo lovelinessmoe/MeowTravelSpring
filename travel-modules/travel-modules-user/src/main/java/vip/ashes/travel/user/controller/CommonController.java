@@ -21,6 +21,11 @@ public class CommonController {
     private final LoginUserUtil loginUserUtil;
 
 
+    /**
+     * 通过攻略id获取评论
+     * @param tacticId 攻略id
+     * @return 所有的评论
+     */
     @GetMapping("/getComment/{tacticId}")
     public Result getCommentByArticleId(@PathVariable String tacticId) {
         return Result.ok().data(commentService.getCommentByTacticId(tacticId));

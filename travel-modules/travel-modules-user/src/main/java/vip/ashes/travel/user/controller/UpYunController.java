@@ -20,6 +20,12 @@ public class UpYunController {
 
     private final UpYunServer upYunServer;
 
+    /**
+     * 又拍云上传图片
+     * @param uri 文件路径
+     * @param file 文件
+     * @return 成功与否
+     */
     @PostMapping("/uploadFile")
     public Result uploadFile(@RequestPart String uri,
                              @RequestPart MultipartFile file) {

@@ -1,5 +1,6 @@
 package vip.ashes.travel.user.entity.Vo;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -40,4 +41,9 @@ public class TacticDetailVO {
      * 文章图片url
      */
     private String imgUrl;
+
+    /**
+     * poi的唯一标示，可用于详情检索
+     */
+    private String uid;
 }

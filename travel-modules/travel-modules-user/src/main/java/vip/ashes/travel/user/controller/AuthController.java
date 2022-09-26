@@ -18,6 +18,12 @@ public class AuthController {
 
     private final UserService userService;
 
+    /**
+     * 注册
+     * @param userRegister 注册用户信息
+     * @param code 邮箱验证码
+     * @return 提示
+     */
     @PostMapping("/register")
     public Result register(@RequestBody User userRegister,
                            @RequestParam String code) {
@@ -30,11 +36,23 @@ public class AuthController {
         }
     }
 
+    /**
+     * 获取验证码
+     * @return k-v验证码
+     */
     @PostMapping("/captcha")
     public Result captcha() {
         return userService.generateCaptcha();
     }
 
+
+    /**
+     * 发送邮箱验证码
+     * @param user 用户信息 主要使用名字和邮箱
+     * @param captchaVerification 验证码key
+     * @param code 验证码val
+     * @return 成功
+     */
     @PostMapping("/registerMail")
     public Result registerMail(@RequestBody User user,
                                @RequestParam String captchaVerification,

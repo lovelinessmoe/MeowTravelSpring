@@ -21,6 +21,10 @@ public class KeyPairController {
     @Resource
     private KeyPair keyPair;
 
+    /**
+     * 获取oauth2公钥
+     * @return
+     */
     @GetMapping("/rsa/publicKey")
     public Map<String, Object> getKey() {
         RSAPublicKey publicKey = (RSAPublicKey) keyPair.getPublic();

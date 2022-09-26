@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="vip.ashes.travel.map.mapper.BaiduPoiMapper">
+	<resultMap id="BaseResultMap" type="vip.ashes.travel.map.entity.BaiduPoi">
+		<!--@mbg.generated-->
+		<!--@Table Travel.baidu_poi-->
+		<id column="uid" jdbcType="CHAR" property="uid"/>
+		<result column="name" jdbcType="VARCHAR" property="name"/>
+		<result column="address" jdbcType="VARCHAR" property="address"/>
+		<result column="province" jdbcType="VARCHAR" property="province"/>
+		<result column="city" jdbcType="VARCHAR" property="city"/>
+		<result column="area" jdbcType="VARCHAR" property="area"/>
+		<result column="telephone" jdbcType="CHAR" property="telephone"/>
+		<result column="location_lat" jdbcType="DOUBLE" property="locationLat"/>
+		<result column="location_lng" jdbcType="DOUBLE" property="locationLng"/>
+		<result column="poi_photo_url" jdbcType="VARCHAR" property="poiPhotoUrl"/>
+		<result column="type" jdbcType="TINYINT" property="type"/>
+	</resultMap>
+	<sql id="Base_Column_List">
+		<!--@mbg.generated-->
+		`uid`, `name`, address, province, city, area, telephone, location_lat, location_lng,
+		poi_photo_url, `type`
+	</sql>
+	<select id="getSizePoi" resultMap="BaseResultMap">
+		select *
+		from baidu_poi bp
+				where uid in (SELECT t.uid
+				              FROM tactic AS t
+						                   LEFT JOIN
+						                   user_rate_poi AS urp
+								                   ON
+										                   urp.baidu_poi_uid = t.uid
+				WHERE t.uid IS NOT NULL
+		<if test="baiduPois.size() != 0">
+			and t.uid NOT IN
+			<foreach collection="baiduPois" item="item" open="(" close=")" separator=",">
+				"${item}"
+			</foreach>
+		</if>
+		GROUP BY t.uid,
+		         t.comments_count,
+		         t.views_count
+		ORDER BY avg(rate) DESC,
+		         t.comments_count DESC,
+		         t.views_count DESC)
+				limit ${size};
+	</select>
+	<select id="getPageList" resultMap="BaseResultMap">
+		SELECT bp.*,
+		       AVG(urp.rate)
+		FROM baidu_poi bp
+				     LEFT JOIN user_rate_poi urp ON bp.uid = urp.baidu_poi_uid
+		GROUP BY bp.uid
+		ORDER BY AVG(urp.rate) DESC,
+		         poi_photo_url DESC
+	</select>
+</mapper>

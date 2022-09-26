@@ -43,4 +43,9 @@ public class TacticDetailVO {
      * 文章图片url
      */
     private String imgUrl;
+
+    /**
+     * poi的唯一标示，可用于详情检索
+     */
+    private String uid;
 }

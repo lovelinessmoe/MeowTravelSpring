@@ -28,6 +28,10 @@ public class UserController {
     private final UserService userService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    /**
+     * 获取个人信息
+     * @return 个人信息
+     */
     @SneakyThrows
     @GetMapping("/getUserInfo")
     public Result getUserInfo() {

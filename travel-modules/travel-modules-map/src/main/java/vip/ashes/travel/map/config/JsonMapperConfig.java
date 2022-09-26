@@ -1,5 +1,6 @@
 package vip.ashes.travel.map.config;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,7 +11,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class JsonMapperConfig {
     @Bean
-    public ObjectMapper objectMapper(){
-        return new ObjectMapper();
+    public ObjectMapper objectMapper() {
+        ObjectMapper mapper = new ObjectMapper();
+        // 未知字段不报错
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        return mapper;
     }
 }

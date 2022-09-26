@@ -44,3 +44,4 @@ public class TacticServiceImpl extends ServiceImpl<TacticMapper, Tactic> impleme
         return tacticMapper.addCommentNum(tacticId);
     }
 }
+

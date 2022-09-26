@@ -8,7 +8,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  * @author loveliness
  */
 @EnableDiscoveryClient
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "vip.ashes")
 public class MapApplication {
     public static void main(String[] args) {
         SpringApplication.run(MapApplication.class, args);

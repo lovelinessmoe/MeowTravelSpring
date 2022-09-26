@@ -63,7 +63,8 @@ public class TacticController {
         if (!StrUtil.isBlank(key)) {
             articleQueryWrapper.like(Tactic.COL_TITLE, key).or()
                     .like(Tactic.COL_SHORT_MSG, key).or()
-                    .like(Tactic.COL_TACTIC_ID, key);
+                    .like(Tactic.COL_TACTIC_ID, key).or()
+                    .eq(Tactic.COL_UID, key);
         }
         articleQueryWrapper.orderByDesc(Tactic.COL_IS_TOP)
                 .orderByDesc(Tactic.COL_CREATE_TIME)
