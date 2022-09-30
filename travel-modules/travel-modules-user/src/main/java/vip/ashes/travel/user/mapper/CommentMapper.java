@@ -3,7 +3,7 @@ package vip.ashes.travel.user.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 import vip.ashes.travel.user.entity.Comment;
-import vip.ashes.travel.user.entity.Vo.CommentVO;
+import vip.ashes.travel.user.entity.Vo.CommentVo;
 
 import java.util.List;
 
@@ -15,5 +15,5 @@ public interface CommentMapper extends BaseMapper<Comment> {
      * @param tacticId 文章id
      * @return 文章VOList
      */
-    List<CommentVO> getCommentByTacticId(String tacticId);
+    List<CommentVo> getCommentByTacticId(String tacticId);
 }

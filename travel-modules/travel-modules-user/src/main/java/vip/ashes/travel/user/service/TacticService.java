@@ -3,7 +3,7 @@ package vip.ashes.travel.user.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import vip.ashes.travel.common.core.Result;
 import vip.ashes.travel.user.entity.Tactic;
-import vip.ashes.travel.user.entity.Vo.TacticDetailVO;
+import vip.ashes.travel.user.entity.Vo.TacticDetailVo;
 
 public interface TacticService extends IService<Tactic> {
 
@@ -14,7 +14,7 @@ public interface TacticService extends IService<Tactic> {
      * @param tacticId 文章id
      * @return 文章对象的文章detail对象的相同
      */
-    TacticDetailVO getTacticDetail(String tacticId);
+    TacticDetailVo getTacticDetail(String tacticId);
 
     /**
      * 删除博客文章

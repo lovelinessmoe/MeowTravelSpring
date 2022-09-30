@@ -8,7 +8,7 @@ import org.springframework.transaction.interceptor.TransactionAspectSupport;
 import vip.ashes.travel.common.core.Result;
 import vip.ashes.travel.common.core.ResultCode;
 import vip.ashes.travel.user.entity.Tactic;
-import vip.ashes.travel.user.entity.Vo.TacticDetailVO;
+import vip.ashes.travel.user.entity.Vo.TacticDetailVo;
 import vip.ashes.travel.user.mapper.TacticDetailMapper;
 import vip.ashes.travel.user.mapper.TacticMapper;
 import vip.ashes.travel.user.service.TacticService;
@@ -21,7 +21,7 @@ public class TacticServiceImpl extends ServiceImpl<TacticMapper, Tactic> impleme
     private final TacticDetailMapper tacticDetailMapper;
 
     @Override
-    public TacticDetailVO getTacticDetail(String tacticId) {
+    public TacticDetailVo getTacticDetail(String tacticId) {
         return tacticMapper.getTacticDetail(tacticId);
     }
 

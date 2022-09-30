@@ -15,7 +15,7 @@
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
     comment_id, user_id, content, create_time, p_id, `level`, tactic_id
-  </sql><select id="getCommentByTacticId" resultType="vip.ashes.travel.user.entity.Vo.CommentVO">
+  </sql><select id="getCommentByTacticId" resultType="vip.ashes.travel.user.entity.Vo.CommentVo">
   select c.comment_id,
 		       c.user_id,
 		       c.content,

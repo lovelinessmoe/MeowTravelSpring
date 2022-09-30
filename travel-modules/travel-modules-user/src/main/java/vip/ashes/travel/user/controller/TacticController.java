@@ -12,7 +12,7 @@ import vip.ashes.travel.common.core.ResultCode;
 import vip.ashes.travel.user.entity.Tactic;
 import vip.ashes.travel.user.entity.TacticDetail;
 import vip.ashes.travel.user.entity.User;
-import vip.ashes.travel.user.entity.Vo.TacticDetailVO;
+import vip.ashes.travel.user.entity.Vo.TacticDetailVo;
 import vip.ashes.travel.user.entity.converter.TacticConverter;
 import vip.ashes.travel.user.service.TacticDetailService;
 import vip.ashes.travel.user.service.TacticService;
@@ -36,7 +36,7 @@ public class TacticController {
      */
     @GetMapping("/detail/{tacticId}")
     public Result detail(@PathVariable("tacticId") String tacticId) {
-        TacticDetailVO tacticDetail = tacticService.getTacticDetail(tacticId);
+        TacticDetailVo tacticDetail = tacticService.getTacticDetail(tacticId);
         return Result.ok().data(tacticDetail);
     }
 
@@ -85,7 +85,7 @@ public class TacticController {
      */
     @PostMapping("/addTactic")
     @Transactional(rollbackFor = Exception.class)
-    public Result addTactic(@RequestBody TacticDetailVO tacticVO) {
+    public Result addTactic(@RequestBody TacticDetailVo tacticVO) {
         User currentUser = loginUserUtil.getCurrentUser();
         tacticVO.setUserId(currentUser.getUserId());
 
@@ -109,7 +109,7 @@ public class TacticController {
      */
     @PostMapping("/editTactic")
     @Transactional(rollbackFor = Exception.class)
-    public Result editTactic(@RequestBody TacticDetailVO tacticVO) {
+    public Result editTactic(@RequestBody TacticDetailVo tacticVO) {
         User currentUser = loginUserUtil.getCurrentUser();
         tacticVO.setUserId(currentUser.getUserId());
 

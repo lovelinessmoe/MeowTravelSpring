@@ -34,7 +34,8 @@ public class ResourceServiceImpl {
         String mapPrefixUrl = "/map/";
         resourceRolesMap.put(mapPrefixUrl + "**", CollUtil.toList("ROLE_ADMIN", "ROLE_USER"));
         resourceRolesMap.put(mapPrefixUrl + "baidu", CollUtil.toList("ROLE_ADMIN"));
-
+        String payPrefixUrl = "/pay/";
+        resourceRolesMap.put(payPrefixUrl + "**", CollUtil.toList("ROLE_ADMIN", "ROLE_USER"));
         redisService.setCacheMap(RedisConstant.RESOURCE_ROLES_MAP, resourceRolesMap);
     }
 }

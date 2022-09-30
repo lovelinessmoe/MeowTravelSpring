@@ -3,7 +3,7 @@ package vip.ashes.travel.user.entity.converter;
 import org.mapstruct.Mapper;
 import vip.ashes.travel.user.entity.Tactic;
 import vip.ashes.travel.user.entity.TacticDetail;
-import vip.ashes.travel.user.entity.Vo.TacticDetailVO;
+import vip.ashes.travel.user.entity.Vo.TacticDetailVo;
 
 /**
  * @author loveliness
@@ -15,13 +15,13 @@ public interface TacticConverter {
      * @param TacticDetailVO
      * @return Tactic
      */
-    Tactic tacticDetailVOToTactic(TacticDetailVO TacticDetailVO);
+    Tactic tacticDetailVOToTactic(TacticDetailVo TacticDetailVO);
 
     /**
      * TacticDetail
      * @param TacticDetailVO
      * @return TacticDetail
      */
-    TacticDetail tacticDetailVOToTacticDetail(TacticDetailVO TacticDetailVO);
+    TacticDetail tacticDetailVOToTacticDetail(TacticDetailVo TacticDetailVO);
 }
 

@@ -16,7 +16,6 @@ import vip.ashes.travel.map.entity.converter.BaiDuMapConverter;
 import vip.ashes.travel.map.service.impl.BaiduPoiService;
 import vip.ashes.travel.map.util.BaiduUtil;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,9 +31,10 @@ public class MapController {
 
     /**
      * 获取百度地点建议
-     * @param query search-key
+     *
+     * @param query  search-key
      * @param region 地区
-     * @param tag tag
+     * @param tag    tag
      * @return 建议
      */
     @SneakyThrows
@@ -50,6 +50,7 @@ public class MapController {
 
     /**
      * 百度地图获取poi的详细信息
+     *
      * @param uid poiID
      * @return 详细信息
      */
@@ -71,10 +72,11 @@ public class MapController {
 
     /**
      * 搜索地点
-     * @param query search-key
+     *
+     * @param query    search-key
      * @param location 位置
-     * @param tag tag
-     * @param region 地域
+     * @param tag      tag
+     * @param region   地域
      * @return 数据的信息
      */
     @SneakyThrows
@@ -89,6 +91,8 @@ public class MapController {
         BaiDuSearchVo baiDuSearchVo = baiduUtil.searchLocation(query, location, tag, region, 0);
         // 先插入数据库中
         List<BaiduPoi> baiduPois = baiDuMapConverter.getPoiListBySearchVoList(baiDuSearchVo.getResults());
+
+        baiduPois.forEach(item -> item.setType("酒店".equals(tag) ? (byte) 1 : (byte) 0));
         baiduPoiService.saveOrUpdateBatch(baiduPois);
 
         // 再从数据库中通过地图的id获取数据库内信息

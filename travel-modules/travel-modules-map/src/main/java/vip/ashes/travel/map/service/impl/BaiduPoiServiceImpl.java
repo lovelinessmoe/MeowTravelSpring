@@ -25,14 +25,18 @@ public class BaiduPoiServiceImpl extends ServiceImpl<BaiduPoiMapper, BaiduPoi> i
             String uid = result.getUid();
             idList.add(uid);
         }
-        return baiduPoiMapper.selectBatchIds(idList);
+        if (idList.isEmpty()) {
+            return new ArrayList<>();
+        } else {
+            return baiduPoiMapper.selectBatchIds(idList);
+        }
     }
 
     @Override
     public List<BaiduPoi> getBaiDuPoiSuggestApi(String key) {
         QueryWrapper<BaiduPoi> baiduPoiQueryWrapper = new QueryWrapper<>();
         baiduPoiQueryWrapper.like(BaiduPoi.COL_NAME, key)
-                .select(BaiduPoi.COL_NAME, BaiduPoi.COL_UID,BaiduPoi.COL_ADDRESS);
+                .select(BaiduPoi.COL_NAME, BaiduPoi.COL_UID, BaiduPoi.COL_ADDRESS);
         return baiduPoiMapper.selectList(baiduPoiQueryWrapper);
     }
 
@@ -50,7 +54,7 @@ public class BaiduPoiServiceImpl extends ServiceImpl<BaiduPoiMapper, BaiduPoi> i
     public PageDTO<BaiduPoi> getPageList(BaiduPoi baiduPoi, PageDTO<BaiduPoi> query) {
         QueryWrapper<BaiduPoi> baiduPoiQueryWrapper = new QueryWrapper<>(baiduPoi);
         baiduPoiQueryWrapper.orderByDesc(BaiduPoi.COL_POI_PHOTO_URL);
-        return baiduPoiMapper.selectPage(query,baiduPoiQueryWrapper);
+        return baiduPoiMapper.selectPage(query, baiduPoiQueryWrapper);
     }
 }
 

@@ -1,5 +1,6 @@
 package vip.ashes.travel.map.util;
 
+import cn.hutool.core.util.StrUtil;
 import cn.hutool.http.HttpUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -39,11 +40,10 @@ public class BaiduUtil {
     }
 
 
-    public BaiDuSearchVo searchLocation(String query, String location, String tag, String region,int pageNum) throws JsonProcessingException {
+    public BaiDuSearchVo searchLocation(String query, String location, String tag, String region, int pageNum) throws JsonProcessingException {
         String url = "https://api.map.baidu.com/place/v2/search?" +
                 //虽然存在tag分类搜索，但我的建议还是在query里进行关键字检索
                 "query=" + query + " " + tag +
-//                "&location=" + location +
                 "&region=" + region +
                 "&page_num=" + pageNum +
                 "&page_size=20" +
@@ -52,6 +52,10 @@ public class BaiduUtil {
 //                不行了，这个需要企业才能申请开通
 //                "&photo_show=true" +
                 "&ak=" + ak;
+
+        if (!StrUtil.isBlank(location)) {
+            url += "&location=" + location;
+        }
 
         String content = HttpUtil.get(url);
         return objectMapper.readValue(content, BaiDuSearchVo.class);

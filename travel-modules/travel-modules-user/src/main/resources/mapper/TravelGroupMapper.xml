@@ -7,13 +7,15 @@
     <id column="group_id" jdbcType="CHAR" property="groupId" />
     <result column="group_num" jdbcType="INTEGER" property="groupNum" />
     <result column="group_name" jdbcType="CHAR" property="groupName" />
-    <result column="creata_time" jdbcType="TIMESTAMP" property="creataTime" />
+    <result column="group_img" jdbcType="VARCHAR" property="groupImg" />
+    <result column="group_short_msg" jdbcType="VARCHAR" property="groupShortMsg" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="is_open_report" jdbcType="BOOLEAN" property="isOpenReport" />
-    <result column="report_open_time" jdbcType="TIMESTAMP" property="reportOpenTime" />
-    <result column="report_end_time" jdbcType="TIMESTAMP" property="reportEndTime" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    group_id, group_num, group_name, creata_time, is_open_report, report_open_time, report_end_time
-  </sql>
+    group_id, group_num, group_name, group_img, group_short_msg, creata_time, is_open_report
+  </sql><select id="getPageGroup" resultType="vip.ashes.travel.user.entity.Vo.GroupInfoVo">
+<!--  TODO-->
+</select>
 </mapper>

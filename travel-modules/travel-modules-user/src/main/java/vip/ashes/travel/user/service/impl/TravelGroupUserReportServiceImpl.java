@@ -10,3 +10,4 @@ import vip.ashes.travel.user.service.TravelGroupUserReportService;
 public class TravelGroupUserReportServiceImpl extends ServiceImpl<TravelGroupUserReportMapper, TravelGroupUserReport> implements TravelGroupUserReportService {
 
 }
+

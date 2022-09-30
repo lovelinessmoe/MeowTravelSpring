@@ -17,10 +17,10 @@
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    tactic_id, title, user_id, create_time, short_msg, views_count, comments_count, is_top, 
+    tactic_id, title, user_id, create_time, short_msg, views_count, comments_count, is_top,
     img_url, `uid`
   </sql>
-	<select id="getTacticDetail" resultType="vip.ashes.travel.user.entity.Vo.TacticDetailVO">
+	<select id="getTacticDetail" resultType="vip.ashes.travel.user.entity.Vo.TacticDetailVo">
 		select *
 		from tactic as t
 				     left join tactic_detail as td on t.tactic_id = td.tactic_id

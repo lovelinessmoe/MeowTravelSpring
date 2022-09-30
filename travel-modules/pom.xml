@@ -15,6 +15,7 @@
 		<module>travel-modules-system</module>
 		<module>travel-modules-user</module>
 		<module>travel-modules-map</module>
+		<module>travel-modules-pay</module>
 	</modules>
 
 

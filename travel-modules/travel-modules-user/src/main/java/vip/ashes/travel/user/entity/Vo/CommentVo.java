@@ -10,7 +10,7 @@ import java.util.Date;
  * @author loveliness
  */
 @Data
-public class CommentVO {
+public class CommentVo {
 
     /**
      * 评论ID

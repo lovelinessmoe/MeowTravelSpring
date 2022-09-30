@@ -6,8 +6,8 @@
     <!--@Table Travel.travel_group_user_report-->
     <id column="group_user_id" jdbcType="CHAR" property="groupUserId" />
     <result column="report_time" jdbcType="TIMESTAMP" property="reportTime" />
-    <result column="location_lat" jdbcType="FLOAT" property="locationLat" />
-    <result column="location_lng" jdbcType="FLOAT" property="locationLng" />
+    <result column="location_lat" jdbcType="DECIMAL" property="locationLat" />
+    <result column="location_lng" jdbcType="DECIMAL" property="locationLng" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->

@@ -41,6 +41,12 @@ spring:
             - Path=/map/**
           filters:
             - StripPrefix=1
+        - id: travel-moudel-pay-route
+          uri: lb://travel-moudel-pay
+          predicates:
+            - Path=/pay/**
+          filters:
+            - StripPrefix=1
       discovery:
         locator:
           enabled: true #开启从注册中心动态创建路由的功能
@@ -89,3 +95,5 @@ secure:
       - "/map/map/suggestion"
       - "/map/map/search"
       - "/map/map/getDetailById/**"
+      # 支付宝异步放行
+      - "/pay/pay/asyncNotify"

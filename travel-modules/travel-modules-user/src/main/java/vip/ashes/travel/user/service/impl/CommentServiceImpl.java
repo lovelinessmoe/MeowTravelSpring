@@ -7,7 +7,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import vip.ashes.travel.user.entity.Comment;
-import vip.ashes.travel.user.entity.Vo.CommentVO;
+import vip.ashes.travel.user.entity.Vo.CommentVo;
 import vip.ashes.travel.user.mapper.CommentMapper;
 import vip.ashes.travel.user.service.CommentService;
 
@@ -21,7 +21,7 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> impl
 
     @Override
     public List<Tree<String>> getCommentByTacticId(String tacticId) {
-        List<CommentVO> comments = commentMapper.getCommentByTacticId(tacticId);
+        List<CommentVo> comments = commentMapper.getCommentByTacticId(tacticId);
 
         //转换成树
         // 构建node列表
