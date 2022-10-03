@@ -1,6 +1,5 @@
 package vip.ashes.travel.map.controller;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.PageDTO;
 import lombok.AllArgsConstructor;
@@ -40,13 +39,13 @@ public class BaiduPoiController {
      */
     @GetMapping("/list")
     public Result list(BaiduPoi baiduPoi, PageDTO<BaiduPoi> query) {
-        PageDTO<BaiduPoi> page = baiduPoiService.getPageList(baiduPoi,query);
+        PageDTO<BaiduPoi> page = baiduPoiService.getPageList(baiduPoi, query);
 //        PageDTO<BaiduPoi> page = baiduPoiService.page(query, baiduPoiQueryWrapper);
         return Result.ok().data(page);
     }
 
     /**
-     *  百度地图poi 保存图片
+     * 百度地图poi 保存图片
      */
     @GetMapping("/savePoiImgUrl")
     public Result savePoiImgUrl(String imgUrl, String uid) {

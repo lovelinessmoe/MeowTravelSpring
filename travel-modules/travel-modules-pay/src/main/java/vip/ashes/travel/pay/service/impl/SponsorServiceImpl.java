@@ -38,8 +38,8 @@ public class SponsorServiceImpl extends ServiceImpl<SponsorMapper, Sponsor> impl
                         .pay(subject, sponsor.getSponsorId(), sponsor.getMoney() + "", null);
 
         HashMap<String, String> stringStringHashMap = new HashMap<>();
-        stringStringHashMap.put("pay",pay.getBody());
-        stringStringHashMap.put("sponsorId",sponsor.getSponsorId());
+        stringStringHashMap.put("pay", pay.getBody());
+        stringStringHashMap.put("sponsorId", sponsor.getSponsorId());
         return stringStringHashMap;
     }
 }

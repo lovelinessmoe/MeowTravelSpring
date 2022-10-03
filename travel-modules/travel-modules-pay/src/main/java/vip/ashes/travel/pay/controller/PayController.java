@@ -1,7 +1,6 @@
 package vip.ashes.travel.pay.controller;
 
 import com.alipay.easysdk.factory.Factory;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
@@ -50,7 +49,7 @@ public class PayController {
         if (signVerified) {
             //TODO
             UpdateWrapper<Sponsor> sponsorUpdateWrapper = new UpdateWrapper<>();
-            sponsorUpdateWrapper.set(Sponsor.COL_TYPE,1);
+            sponsorUpdateWrapper.set(Sponsor.COL_TYPE, 1);
 //                    .eq(Sponsor.COL_SPONSOR_ID,params.get(""))
 //            sponsorService.update()
             System.out.println("通过验签");

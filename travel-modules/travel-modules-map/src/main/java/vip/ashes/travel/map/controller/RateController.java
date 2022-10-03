@@ -23,8 +23,9 @@ public class RateController {
 
     /**
      * 发起评分
+     *
      * @param rate 评分多少
-     * @param uid poi
+     * @param uid  poi
      * @return 成功与否
      */
     @PostMapping("submitRate")
@@ -41,6 +42,7 @@ public class RateController {
 
     /**
      * 获取poi的评分
+     *
      * @param uid poiID
      * @return 评分
      */

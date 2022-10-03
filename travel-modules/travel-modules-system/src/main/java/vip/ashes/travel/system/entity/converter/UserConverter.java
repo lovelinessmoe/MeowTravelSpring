@@ -2,7 +2,6 @@ package vip.ashes.travel.system.entity.converter;
 
 
 import org.mapstruct.Mapper;
-import vip.ashes.travel.system.entity.User;
 
 /**
  * @author loveliness

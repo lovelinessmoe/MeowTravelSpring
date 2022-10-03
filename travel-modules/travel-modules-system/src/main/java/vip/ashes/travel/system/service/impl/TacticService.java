@@ -1,8 +1,9 @@
 package vip.ashes.travel.system.service.impl;
 
-import vip.ashes.travel.system.entity.Tactic;
 import com.baomidou.mybatisplus.extension.service.IService;
-public interface TacticService extends IService<Tactic>{
+import vip.ashes.travel.system.entity.Tactic;
+
+public interface TacticService extends IService<Tactic> {
 
 
 }

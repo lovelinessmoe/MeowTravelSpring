@@ -8,10 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import vip.ashes.travel.common.core.Result;
 import vip.ashes.travel.common.core.ResultCode;
 import vip.ashes.travel.system.entity.Tactic;
-import vip.ashes.travel.system.entity.User;
 import vip.ashes.travel.system.entity.Vo.TacticDetailVO;
 import vip.ashes.travel.system.service.TacticService;
-import vip.ashes.travel.system.utils.LoginUserUtil;
 
 import java.util.ArrayList;
 

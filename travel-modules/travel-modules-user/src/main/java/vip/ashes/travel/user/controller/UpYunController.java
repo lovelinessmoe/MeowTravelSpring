@@ -22,7 +22,8 @@ public class UpYunController {
 
     /**
      * 又拍云上传图片
-     * @param uri 文件路径
+     *
+     * @param uri  文件路径
      * @param file 文件
      * @return 成功与否
      */

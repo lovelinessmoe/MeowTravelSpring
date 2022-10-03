@@ -32,6 +32,7 @@ public class RecommendController {
 
     /**
      * 给用户推荐景点
+     *
      * @return 6条以上推荐的景点
      */
     @GetMapping("/getUserLikeSights")

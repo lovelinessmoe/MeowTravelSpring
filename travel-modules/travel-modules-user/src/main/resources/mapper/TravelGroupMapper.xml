@@ -1,21 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="vip.ashes.travel.user.mapper.TravelGroupMapper">
-  <resultMap id="BaseResultMap" type="vip.ashes.travel.user.entity.TravelGroup">
-    <!--@mbg.generated-->
-    <!--@Table Travel.travel_group-->
-    <id column="group_id" jdbcType="CHAR" property="groupId" />
-    <result column="group_num" jdbcType="INTEGER" property="groupNum" />
-    <result column="group_name" jdbcType="CHAR" property="groupName" />
-    <result column="group_img" jdbcType="VARCHAR" property="groupImg" />
-    <result column="group_short_msg" jdbcType="VARCHAR" property="groupShortMsg" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="is_open_report" jdbcType="BOOLEAN" property="isOpenReport" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    <!--@mbg.generated-->
-    group_id, group_num, group_name, group_img, group_short_msg, creata_time, is_open_report
-  </sql><select id="getPageGroup" resultType="vip.ashes.travel.user.entity.Vo.GroupInfoVo">
-<!--  TODO-->
-</select>
+	<resultMap id="BaseResultMap" type="vip.ashes.travel.user.entity.TravelGroup">
+		<!--@mbg.generated-->
+		<!--@Table Travel.travel_group-->
+		<id column="group_id" jdbcType="CHAR" property="groupId"/>
+		<result column="group_num" jdbcType="INTEGER" property="groupNum"/>
+		<result column="group_name" jdbcType="CHAR" property="groupName"/>
+		<result column="group_img" jdbcType="VARCHAR" property="groupImg"/>
+		<result column="group_short_msg" jdbcType="VARCHAR" property="groupShortMsg"/>
+		<result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+		<result column="is_open_report" jdbcType="BOOLEAN" property="isOpenReport"/>
+	</resultMap>
+	<sql id="Base_Column_List">
+		<!--@mbg.generated-->
+		group_id, group_num, group_name, group_img, group_short_msg, create_time, is_open_report
+	</sql>
+	<select id="getPageGroup" resultType="vip.ashes.travel.user.entity.Vo.GroupInfoVo">
+		SELECT tg.*,
+		       count(1) now_num
+		FROM travel_group tg
+				     LEFT JOIN travel_group_user tgu ON tg.group_id = tgu.group_id
+		<where>
+			<if test="userId != null and userId != ''">
+				tg.group_id IN (SELECT group_id FROM travel_group_user WHERE user_id = #{userId,jdbcType=VARCHAR})
+			</if>
+		</where>
+		GROUP BY tg.group_id
+		ORDER BY tg.create_time DESC
+	</select>
+	<select id="getGroupInfoByGroupId" resultType="vip.ashes.travel.user.entity.Vo.GroupInfoVo">
+		SELECT tg.*,
+		       count(1) now_num
+		FROM travel_group tg
+				     LEFT JOIN travel_group_user tgu ON tg.group_id = tgu.group_id
+		where tg.group_id = '${groupId}'
+		GROUP BY tg.group_id
+	</select>
 </mapper>

@@ -12,6 +12,7 @@ import vip.ashes.travel.system.entity.Vo.TacticDetailVO;
 public interface TacticConverter {
     /**
      * 前端的添加文章转换成Tactic
+     *
      * @param TacticDetailVO
      * @return Tactic
      */
@@ -19,6 +20,7 @@ public interface TacticConverter {
 
     /**
      * TacticDetail
+     *
      * @param TacticDetailVO
      * @return TacticDetail
      */

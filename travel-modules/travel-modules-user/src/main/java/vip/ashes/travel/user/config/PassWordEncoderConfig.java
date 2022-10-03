@@ -6,6 +6,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
  * 密码加密器的注入
+ *
  * @author loveliness
  */
 @Configuration

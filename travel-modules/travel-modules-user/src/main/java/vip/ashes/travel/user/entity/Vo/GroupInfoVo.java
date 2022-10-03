@@ -41,6 +41,11 @@ public class GroupInfoVo {
     private Date createTime;
 
     /**
+     * 是否开启健康打卡功能
+     */
+    private Boolean isOpenReport;
+
+    /**
      * 团当前人数
      */
     private Integer nowNum;

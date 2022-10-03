@@ -1,4 +1,3 @@
-
 package vip.ashes.travel.pay.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;

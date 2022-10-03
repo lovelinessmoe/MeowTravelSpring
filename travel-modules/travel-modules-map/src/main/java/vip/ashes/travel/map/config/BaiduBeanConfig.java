@@ -25,7 +25,7 @@ public class BaiduBeanConfig {
 
 
     @Bean
-    public BaiduUtil baiduUtil(){
-        return new BaiduUtil(ak,objectMapper);
+    public BaiduUtil baiduUtil() {
+        return new BaiduUtil(ak, objectMapper);
     }
 }

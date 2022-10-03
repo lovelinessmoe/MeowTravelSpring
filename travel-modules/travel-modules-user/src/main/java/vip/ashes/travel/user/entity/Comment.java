@@ -39,7 +39,7 @@ public class Comment implements Serializable {
     /**
      * 创建时间
      */
-    @TableField(value = "create_time",fill = FieldFill.INSERT_UPDATE)
+    @TableField(value = "create_time", fill = FieldFill.INSERT_UPDATE)
     private Date createTime;
     /**
      * 父id

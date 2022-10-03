@@ -1,6 +1,5 @@
 package vip.ashes.travel.user.entity.Vo;
 
-import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

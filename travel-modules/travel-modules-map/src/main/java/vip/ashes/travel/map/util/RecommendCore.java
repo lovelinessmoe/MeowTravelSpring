@@ -11,6 +11,27 @@ import java.util.stream.IntStream;
  * @author loveliness
  */
 public class RecommendCore {
+    /**
+     * pearson相关系数计算
+     *
+     * @param xs 别人对poi的评分集合
+     * @param ys 自己对poi的评分集合
+     */
+    public static Double getRelate(List<Double> xs, List<Double> ys) {
+        int n = xs.size();
+        double ex = xs.stream().mapToDouble(x -> x).sum();
+        double ey = ys.stream().mapToDouble(y -> y).sum();
+        double Ex2 = xs.stream().mapToDouble(x -> Math.pow(x, 2)).sum();
+        double Ey2 = ys.stream().mapToDouble(y -> Math.pow(y, 2)).sum();
+        double Exy = IntStream.range(0, n).mapToDouble(i -> xs.get(i) * ys.get(i)).sum();
+        double numerator = Exy - ex * ey / n;
+        double denominator = Math.sqrt((Ex2 - Math.pow(ex, 2) / n) * (Ey2 - Math.pow(ey, 2) / n));
+        if (denominator == 0) {
+            return 0.0;
+        }
+        return numerator / denominator;
+    }
+
     public List<String> recommend(String userId, List<UserRatePoi> list) {
         // 根据用户id分组
         Map<String, List<UserRatePoi>> userMap = list.stream().collect(Collectors.groupingBy(UserRatePoi::getUserId));
@@ -43,7 +64,6 @@ public class RecommendCore {
         return recommendList;
     }
 
-
     /**
      * 在给定userId的情况下，计算其他用户和它的相关系数并排序
      *
@@ -64,7 +84,6 @@ public class RecommendCore {
         });
         return distances;
     }
-
 
     /**
      * 计算两个序列间的相关系数
@@ -87,27 +106,6 @@ public class RecommendCore {
             }
         }
         return getRelate(xs, ys);
-    }
-
-    /**
-     * pearson相关系数计算
-     *
-     * @param xs 别人对poi的评分集合
-     * @param ys 自己对poi的评分集合
-     */
-    public static Double getRelate(List<Double> xs, List<Double> ys) {
-        int n = xs.size();
-        double ex = xs.stream().mapToDouble(x -> x).sum();
-        double ey = ys.stream().mapToDouble(y -> y).sum();
-        double Ex2 = xs.stream().mapToDouble(x -> Math.pow(x, 2)).sum();
-        double Ey2 = ys.stream().mapToDouble(y -> Math.pow(y, 2)).sum();
-        double Exy = IntStream.range(0, n).mapToDouble(i -> xs.get(i) * ys.get(i)).sum();
-        double numerator = Exy - ex * ey / n;
-        double denominator = Math.sqrt((Ex2 - Math.pow(ex, 2) / n) * (Ey2 - Math.pow(ey, 2) / n));
-        if (denominator == 0) {
-            return 0.0;
-        }
-        return numerator / denominator;
     }
 
 }

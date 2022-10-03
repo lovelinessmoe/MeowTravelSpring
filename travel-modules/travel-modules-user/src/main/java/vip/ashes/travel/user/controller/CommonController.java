@@ -10,6 +10,7 @@ import vip.ashes.travel.user.utils.LoginUserUtil;
 
 /**
  * 评论
+ *
  * @author loveliness
  */
 @RestController
@@ -23,6 +24,7 @@ public class CommonController {
 
     /**
      * 通过攻略id获取评论
+     *
      * @param tacticId 攻略id
      * @return 所有的评论
      */
@@ -32,7 +34,6 @@ public class CommonController {
     }
 
     /**
-     *
      * @param comment 用户发表的评论
      * @return
      */

@@ -30,6 +30,7 @@ public class UserController {
 
     /**
      * 获取个人信息
+     *
      * @return 个人信息
      */
     @SneakyThrows
@@ -46,12 +47,13 @@ public class UserController {
 
     /**
      * 获取邮箱验证码,用于修改信息时
+     *
      * @param captchaVerification 验证码随机
-     * @param code 验证码
+     * @param code                验证码
      * @return
      */
     @PostMapping("/modifyInfMail")
-    public Result modifyInfMail(@RequestParam String captchaVerification,@RequestParam String code) {
+    public Result modifyInfMail(@RequestParam String captchaVerification, @RequestParam String code) {
         User currentUser = loginUserUtil.getCurrentUser();
         if (userService.checkCaptcha(captchaVerification, code)) {
             return userService.modifyInfMail(currentUser.getUserId());
@@ -62,12 +64,13 @@ public class UserController {
 
     /**
      * 修改用户信息
-     * @param user 要更改的用户信息
+     *
+     * @param user     要更改的用户信息
      * @param mailCode 随机生成的鉴权码，邮箱里的
      * @return
      */
     @PostMapping("/updateUserInfo")
-    public Result updateUserInfo(@RequestBody User user,@RequestParam String mailCode) {
+    public Result updateUserInfo(@RequestBody User user, @RequestParam String mailCode) {
         //通过请求头的id获取用户，增加安全性
         String userId = loginUserUtil.getCurrentUser().getUserId();
         User user1 = userService.getById(userId);

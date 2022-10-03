@@ -23,6 +23,7 @@ public class KeyPairController {
 
     /**
      * 获取oauth2公钥
+     *
      * @return
      */
     @GetMapping("/rsa/publicKey")

@@ -21,16 +21,10 @@ import java.util.Date;
 @Component
 public class MailUtils {
 
-    @Resource
-    private JavaMailSenderImpl javaMailSender;
-
     @Autowired
     private static JavaMailSenderImpl mailSender;
-
-    @PostConstruct
-    public void init() {
-        mailSender = javaMailSender;
-    }
+    @Resource
+    private JavaMailSenderImpl javaMailSender;
 
     public static MailVo sendMail(MailVo mailVo) {
         try {
@@ -46,7 +40,6 @@ public class MailUtils {
             return mailVo;
         }
     }
-
 
     /**
      * 检测邮件信息类
@@ -126,16 +119,6 @@ public class MailUtils {
     }
 
     /**
-     * 获取邮件发信人
-     * 暂时没用
-     *
-     * @return 返回发信人
-     */
-    public String getMailSendFrom() {
-        return mailSender.getJavaMailProperties().getProperty("from");
-    }
-
-    /**
      * 正则表达，看是不是邮箱
      *
      * @param mailAddress
@@ -143,6 +126,21 @@ public class MailUtils {
      */
     public static boolean isEmail(String mailAddress) {
         return ReUtil.isMatch("^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$", mailAddress);
+    }
+
+    @PostConstruct
+    public void init() {
+        mailSender = javaMailSender;
+    }
+
+    /**
+     * 获取邮件发信人
+     * 暂时没用
+     *
+     * @return 返回发信人
+     */
+    public String getMailSendFrom() {
+        return mailSender.getJavaMailProperties().getProperty("from");
     }
 
 }

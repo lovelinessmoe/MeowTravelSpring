@@ -2,7 +2,6 @@ package vip.ashes.travel.user.service;
 
 import cn.hutool.core.lang.tree.Tree;
 import com.baomidou.mybatisplus.extension.service.IService;
-import vip.ashes.travel.common.core.Result;
 import vip.ashes.travel.user.entity.Comment;
 
 import java.util.List;

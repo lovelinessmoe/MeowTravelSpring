@@ -27,6 +27,7 @@ public class VisualController {
     /**
      * 管理员后台的注册用户可视化
      * 做了redis缓存
+     *
      * @return 全国注册人数
      */
     @GetMapping("/userLocation")

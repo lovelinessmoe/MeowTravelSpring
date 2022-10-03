@@ -7,8 +7,11 @@ import vip.ashes.travel.user.entity.Vo.GroupInfoVo;
 
 import java.util.List;
 
+/**
+ * @author loveliness
+ */
 public interface TravelGroupService extends IService<TravelGroup> {
 
 
-    List<GroupInfoVo> getPageGroup(PageDTO<GroupInfoVo> page);
+    List<GroupInfoVo> getPageGroup(boolean onlyShowMyJoin, PageDTO<GroupInfoVo> page);
 }

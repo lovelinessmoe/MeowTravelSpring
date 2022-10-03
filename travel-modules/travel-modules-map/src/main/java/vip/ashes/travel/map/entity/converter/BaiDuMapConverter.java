@@ -3,7 +3,6 @@ package vip.ashes.travel.map.entity.converter;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
-import org.mapstruct.NullValuePropertyMappingStrategy;
 import vip.ashes.travel.map.entity.BaiduPoi;
 import vip.ashes.travel.map.entity.Vo.BaiDuPoiDetailVo;
 import vip.ashes.travel.map.entity.Vo.BaiDuSearchVo;

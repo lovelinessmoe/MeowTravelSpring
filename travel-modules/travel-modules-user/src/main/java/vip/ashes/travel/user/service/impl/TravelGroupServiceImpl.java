@@ -8,6 +8,7 @@ import vip.ashes.travel.user.entity.TravelGroup;
 import vip.ashes.travel.user.entity.Vo.GroupInfoVo;
 import vip.ashes.travel.user.mapper.TravelGroupMapper;
 import vip.ashes.travel.user.service.TravelGroupService;
+import vip.ashes.travel.user.utils.LoginUserUtil;
 
 import java.util.List;
 
@@ -18,9 +19,15 @@ import java.util.List;
 @AllArgsConstructor
 public class TravelGroupServiceImpl extends ServiceImpl<TravelGroupMapper, TravelGroup> implements TravelGroupService {
     private final TravelGroupMapper travelGroupMapper;
+    private final LoginUserUtil loginUserUtil;
+
     @Override
-    public List<GroupInfoVo> getPageGroup(PageDTO<GroupInfoVo> page) {
-        return travelGroupMapper.getPageGroup(page);
+    public List<GroupInfoVo> getPageGroup(boolean onlyShowMyJoin, PageDTO<GroupInfoVo> page) {
+        String userId = "";
+        if (onlyShowMyJoin) {
+            userId = loginUserUtil.getCurrentUser().getUserId();
+        }
+        return travelGroupMapper.getPageGroup(userId, page);
     }
 }
 

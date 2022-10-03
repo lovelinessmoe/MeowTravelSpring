@@ -1,9 +1,9 @@
 package vip.ashes.travel.system.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import vip.ashes.travel.system.entity.Dict;
 import vip.ashes.travel.system.entity.Vo.DictVO;
 import vip.ashes.travel.system.entity.converter.DictConverter;
@@ -17,7 +17,7 @@ import java.util.List;
  */
 @Service
 @AllArgsConstructor
-public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements DictService{
+public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements DictService {
     private final DictMapper dictMapper;
     private final DictConverter dictConverter;
 
