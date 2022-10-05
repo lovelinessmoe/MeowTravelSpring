@@ -5,10 +5,12 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import vip.ashes.travel.user.entity.TravelGroupUserReport;
+import vip.ashes.travel.user.entity.Vo.CheckGroupInfo;
 import vip.ashes.travel.user.mapper.TravelGroupUserReportMapper;
 import vip.ashes.travel.user.service.TravelGroupUserReportService;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author loveliness
@@ -32,6 +34,16 @@ public class TravelGroupUserReportServiceImpl extends ServiceImpl<TravelGroupUse
     @Override
     public TravelGroupUserReport getUserCheck(String groupUserId, String date) {
         return travelGroupUserReportMapper.getUserCheck(groupUserId, date);
+    }
+
+    @Override
+    public List<CheckGroupInfo> getTodayGroupCheckInfo(String groupId) {
+        return getGroupCheckInfo(groupId,DateUtil.formatDate(new Date()));
+    }
+
+    @Override
+    public List<CheckGroupInfo> getGroupCheckInfo(String groupId, String date) {
+        return travelGroupUserReportMapper.getGroupCheckInfo(groupId,date);
     }
 }
 

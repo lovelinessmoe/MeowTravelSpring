@@ -20,7 +20,7 @@ public interface TravelGroupMapper extends BaseMapper<TravelGroup> {
      * @param page 分页信息
      * @return  List<GroupInfoVo>
      */
-    List<GroupInfoVo> getPageGroup(@Param("userId") String userId, PageDTO<GroupInfoVo> page);
+    List<GroupInfoVo> getPageGroup(String userId, PageDTO<GroupInfoVo> page);
 
     /**
      * 通过GroupId获取旅游团信息
@@ -28,4 +28,6 @@ public interface TravelGroupMapper extends BaseMapper<TravelGroup> {
      * @return 包含参加人数的VO
      */
     GroupInfoVo getGroupInfoByGroupId(@Param("groupId") String groupId);
+
+    List<TravelGroup> getMyGroup(@Param("userId") String userId);
 }

@@ -29,5 +29,10 @@ public class TravelGroupServiceImpl extends ServiceImpl<TravelGroupMapper, Trave
         }
         return travelGroupMapper.getPageGroup(userId, page);
     }
+
+    @Override
+    public List<TravelGroup> getMyGroup(String userId) {
+        return travelGroupMapper.getMyGroup(userId);
+    }
 }
 

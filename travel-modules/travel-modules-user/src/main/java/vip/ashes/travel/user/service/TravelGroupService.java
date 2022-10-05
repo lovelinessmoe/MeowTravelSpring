@@ -14,4 +14,6 @@ public interface TravelGroupService extends IService<TravelGroup> {
 
 
     List<GroupInfoVo> getPageGroup(boolean onlyShowMyJoin, PageDTO<GroupInfoVo> page);
+
+    List<TravelGroup> getMyGroup(String userId);
 }

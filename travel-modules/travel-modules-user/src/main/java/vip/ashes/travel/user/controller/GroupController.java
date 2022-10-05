@@ -11,11 +11,14 @@ import vip.ashes.travel.user.entity.TravelGroup;
 import vip.ashes.travel.user.entity.TravelGroupUser;
 import vip.ashes.travel.user.entity.TravelGroupUserReport;
 import vip.ashes.travel.user.entity.User;
+import vip.ashes.travel.user.entity.Vo.CheckGroupInfo;
 import vip.ashes.travel.user.entity.Vo.GroupInfoVo;
 import vip.ashes.travel.user.service.TravelGroupService;
 import vip.ashes.travel.user.service.TravelGroupUserReportService;
 import vip.ashes.travel.user.service.TravelGroupUserService;
 import vip.ashes.travel.user.utils.LoginUserUtil;
+
+import java.util.List;
 
 /**
  * @author loveliness
@@ -31,7 +34,8 @@ public class GroupController {
 
     /**
      * 分页查询旅游团信息
-     * @param page 分页
+     *
+     * @param page           分页
      * @param onlyShowMyJoin 是否只展示我参加的
      * @return GroupInfoVo
      */
@@ -42,6 +46,7 @@ public class GroupController {
 
     /**
      * 创建或修改旅游团
+     *
      * @param travelGroup 旅游团信息
      * @return 信息
      */
@@ -75,6 +80,7 @@ public class GroupController {
 
     /**
      * 加入旅游团
+     *
      * @param groupId 旅游团ID
      * @return 成功信息
      */
@@ -86,7 +92,8 @@ public class GroupController {
 
     /**
      * 每日打卡
-     * @param groupId 旅游团ID
+     *
+     * @param groupId               旅游团ID
      * @param travelGroupUserReport 包含位置信息
      * @return 成功信息
      */
@@ -104,6 +111,19 @@ public class GroupController {
             travelGroupUserReportService.checkDaily(travelGroupUserReport);
             return Result.ok().message("打卡成功");
         }
+    }
+
+    @GetMapping("getMyGroup")
+    public Result getMyGroup() {
+        String userId = loginUserUtil.getCurrentUser().getUserId();
+        List<TravelGroup> myGroup = travelGroupService.getMyGroup(userId);
+        return Result.ok().data(myGroup);
+    }
+
+    @GetMapping("getGroupCheckInfo")
+    public Result getGroupCheckInfo(String groupId) {
+        List<CheckGroupInfo> checkGroupInfos = travelGroupUserReportService.getTodayGroupCheckInfo(groupId);
+        return Result.ok().data(checkGroupInfos);
     }
 
 }

@@ -4,6 +4,9 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import vip.ashes.travel.user.entity.TravelGroupUserReport;
+import vip.ashes.travel.user.entity.Vo.CheckGroupInfo;
+
+import java.util.List;
 
 @Mapper
 public interface TravelGroupUserReportMapper extends BaseMapper<TravelGroupUserReport> {
@@ -15,4 +18,6 @@ public interface TravelGroupUserReportMapper extends BaseMapper<TravelGroupUserR
      * @return 查询记录
      */
     TravelGroupUserReport getUserCheck(@Param("groupUserId") String groupUserId, @Param("date") String date);
+
+    List<CheckGroupInfo> getGroupCheckInfo(@Param("groupId") String groupId, @Param("date") String date);
 }

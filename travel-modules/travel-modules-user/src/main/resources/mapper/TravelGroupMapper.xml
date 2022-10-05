@@ -37,4 +37,13 @@
 		where tg.group_id = '${groupId}'
 		GROUP BY tg.group_id
 	</select>
+	<select id="getMyGroup" resultMap="BaseResultMap">
+		SELECT tg.*,
+		       count(1) now_num
+		FROM travel_group tg
+				     LEFT JOIN travel_group_user tgu ON tg.group_id = tgu.group_id
+		WHERE tg.group_id IN (SELECT group_id FROM travel_group_user WHERE user_id = '${userId}' AND is_leader = 1)
+		GROUP BY tg.group_id
+		ORDER BY create_time DESC
+	</select>
 </mapper>

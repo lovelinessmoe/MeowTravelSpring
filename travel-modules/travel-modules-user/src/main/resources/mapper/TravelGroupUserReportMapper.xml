@@ -21,4 +21,21 @@
 		  AND group_user_id = '${groupUserId}'
 		LIMIT 1
 	</select>
+	<select id="getGroupCheckInfo" resultType="vip.ashes.travel.user.entity.Vo.CheckGroupInfo">
+		SELECT u.user_name,
+		       u.email,
+		       u.avatar_url,
+		       u.telephone,
+		       tgu.add_time,
+		       tgur.location_lng,
+		       tgur.location_lat,
+		       DATE_FORMAT(report_time, '%H:%i') AS 'report_time'
+		FROM `user` u
+				     LEFT JOIN travel_group_user tgu ON tgu.user_id = u.user_id
+				     LEFT JOIN travel_group_user_report tgur ON tgur.group_user_id = tgu.group_user_id
+				and DATE_FORMAT(tgur.report_time, '%Y-%m-%d') = '${date}'
+		WHERE tgu.group_id = '${groupId}'
+		ORDER BY is_leader DESC,
+		         tgur.report_time
+	</select>
 </mapper>

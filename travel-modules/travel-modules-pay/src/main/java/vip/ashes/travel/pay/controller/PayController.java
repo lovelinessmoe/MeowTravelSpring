@@ -35,7 +35,7 @@ public class PayController {
         System.out.println("进入异步");
 
         // 解析异步请求的参数
-        Map<String, String> params = new HashMap<>();
+        Map<String, String> params = new HashMap<>(21);
         Enumeration<?> temp = request.getParameterNames();
         while (temp.hasMoreElements()) {
             String en = (String) temp.nextElement();
@@ -45,16 +45,11 @@ public class PayController {
         // 验签
         boolean signVerified = Factory.Payment.Common().verifyNotify(params);
 
-        System.err.println(params);
         if (signVerified) {
-            //TODO
             UpdateWrapper<Sponsor> sponsorUpdateWrapper = new UpdateWrapper<>();
-            sponsorUpdateWrapper.set(Sponsor.COL_TYPE, 1);
-//                    .eq(Sponsor.COL_SPONSOR_ID,params.get(""))
-//            sponsorService.update()
-            System.out.println("通过验签");
-        } else {
-            System.out.println("fail");
+            UpdateWrapper<Sponsor> eq = sponsorUpdateWrapper.set(Sponsor.COL_TYPE, 1)
+                    .eq(Sponsor.COL_SPONSOR_ID, params.get("out_trade_no"));
+            sponsorService.update(eq);
         }
     }
 
