@@ -1,6 +1,7 @@
 package vip.ashes.travel.user.controller;
 
 import cn.hutool.core.util.StrUtil;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.PageDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
@@ -100,16 +101,23 @@ public class GroupController {
     @PostMapping("checkDaily")
     public Result checkDaily(@RequestParam String groupId,
                              @RequestBody TravelGroupUserReport travelGroupUserReport) {
-        String userId = loginUserUtil.getCurrentUser().getUserId();
-        TravelGroupUser groupUser = travelGroupUserService.getGroupUser(groupId, userId);
-        String groupUserId = groupUser.getGroupUserId();
-        TravelGroupUserReport todayLog = travelGroupUserReportService.getUserCheckToday(groupUserId);
-        if (todayLog != null) {
-            return Result.error().message("今天已经打过卡了哦");
+        TravelGroup byId = travelGroupService.getById(groupId);
+        if (byId.getIsOpenReport()) {
+
+
+            String userId = loginUserUtil.getCurrentUser().getUserId();
+            TravelGroupUser groupUser = travelGroupUserService.getGroupUser(groupId, userId);
+            String groupUserId = groupUser.getGroupUserId();
+            TravelGroupUserReport todayLog = travelGroupUserReportService.getUserCheckToday(groupUserId);
+            if (todayLog != null) {
+                return Result.error().message("今天已经打过卡了哦");
+            } else {
+                travelGroupUserReport.setGroupUserId(groupUserId);
+                travelGroupUserReportService.checkDaily(travelGroupUserReport);
+                return Result.ok().message("打卡成功");
+            }
         } else {
-            travelGroupUserReport.setGroupUserId(groupUserId);
-            travelGroupUserReportService.checkDaily(travelGroupUserReport);
-            return Result.ok().message("打卡成功");
+            return Result.error().message("该旅游团未开启健康打卡");
         }
     }
 
@@ -124,6 +132,30 @@ public class GroupController {
     public Result getGroupCheckInfo(String groupId) {
         List<CheckGroupInfo> checkGroupInfos = travelGroupUserReportService.getTodayGroupCheckInfo(groupId);
         return Result.ok().data(checkGroupInfos);
+    }
+
+    @PostMapping("removeUserFromGroup")
+    public Result removeUserFromGroup(String userId, String groupId) {
+        QueryWrapper<TravelGroupUser> eq = new QueryWrapper<TravelGroupUser>()
+                .eq(TravelGroupUser.COL_USER_ID, userId)
+                .eq(TravelGroupUser.COL_GROUP_ID, groupId);
+
+        TravelGroupUser one = travelGroupUserService.getOne(eq);
+        if (one.getIsLeader()) {
+            boolean dissolution = travelGroupUserService.dissolutionGroup(groupId);
+            if (dissolution) {
+                return Result.ok().message("解散成功");
+            } else {
+                return Result.error().message("解散失败");
+            }
+        } else {
+            boolean remove = travelGroupUserService.remove(eq);
+            if (remove) {
+                return Result.ok().message("踢出旅游团成功");
+            } else {
+                return Result.error().message("踢出旅游团失败");
+            }
+        }
     }
 
 }

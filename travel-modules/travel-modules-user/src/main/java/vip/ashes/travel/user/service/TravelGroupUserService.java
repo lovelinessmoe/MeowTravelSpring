@@ -28,4 +28,11 @@ public interface TravelGroupUserService extends IService<TravelGroupUser> {
      * @return TravelGroupUser
      */
     TravelGroupUser getGroupUser(String groupId, String userId);
+
+    /**
+     * 解散旅游团
+     * @param groupId 旅游团id
+     * @return 是否成功
+     */
+    boolean dissolutionGroup(String groupId);
 }

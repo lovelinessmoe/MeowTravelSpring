@@ -16,11 +16,13 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CheckGroupInfo {
+    private String userId;
     private String userName;
     private String telephone;
     private String email;
     private String avatarUrl;
     private Date addTime;
+    private boolean isLeader;
     private BigDecimal locationLat;
     private BigDecimal locationLng;
     private String reportTime;

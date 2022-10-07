@@ -20,4 +20,6 @@ public interface TravelGroupUserReportMapper extends BaseMapper<TravelGroupUserR
     TravelGroupUserReport getUserCheck(@Param("groupUserId") String groupUserId, @Param("date") String date);
 
     List<CheckGroupInfo> getGroupCheckInfo(@Param("groupId") String groupId, @Param("date") String date);
+
+    int deleteReportByGroupUserId(@Param("groupUserIds") List<String> groupUserIds);
 }

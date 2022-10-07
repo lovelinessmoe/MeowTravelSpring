@@ -22,11 +22,13 @@
 		LIMIT 1
 	</select>
 	<select id="getGroupCheckInfo" resultType="vip.ashes.travel.user.entity.Vo.CheckGroupInfo">
-		SELECT u.user_name,
+		SELECT u.user_id,
+		       u.user_name,
 		       u.email,
 		       u.avatar_url,
 		       u.telephone,
 		       tgu.add_time,
+		       tgu.is_leader,
 		       tgur.location_lng,
 		       tgur.location_lat,
 		       DATE_FORMAT(report_time, '%H:%i') AS 'report_time'
@@ -38,4 +40,16 @@
 		ORDER BY is_leader DESC,
 		         tgur.report_time
 	</select>
+	<delete id="deleteReportByGroupUserId">
+		delete
+		from travel_group_user_report
+		<where>
+			<if test="groupUserIds != null and groupUserIds.size() > 0">
+				group_user_id IN
+				<foreach item="item" index="index" collection="groupUserIds" open="(" close=")" separator=",">
+					#{item}
+				</foreach>
+			</if>
+		</where>
+	</delete>
 </mapper>
