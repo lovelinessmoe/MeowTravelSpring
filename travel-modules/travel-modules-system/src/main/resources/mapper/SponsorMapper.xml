@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="vip.ashes.travel.system.mapper.SponsorMapper">
+	<resultMap id="BaseResultMap" type="vip.ashes.travel.system.entity.Sponsor">
+		<!--@mbg.generated-->
+		<!--@Table Travel.sponsor-->
+		<id column="sponsor_id" jdbcType="CHAR" property="sponsorId"/>
+		<result column="user_id" jdbcType="CHAR" property="userId"/>
+		<result column="tactic_id" jdbcType="CHAR" property="tacticId"/>
+		<result column="money" jdbcType="DECIMAL" property="money"/>
+		<result column="type" jdbcType="BOOLEAN" property="type"/>
+	</resultMap>
+	<sql id="Base_Column_List">
+		<!--@mbg.generated-->
+		sponsor_id, user_id, tactic_id, money, `type`
+	</sql>
+	<select id="getSponsorPage" resultType="vip.ashes.travel.system.entity.Vo.SponsorVo">
+		SELECT t.title,
+		       u.user_name,
+		       u.email,
+		       s.type,
+		       s.money
+		FROM sponsor s
+				     LEFT JOIN `user` u ON s.user_id = u.user_id
+				     LEFT JOIN tactic t ON s.tactic_id = t.tactic_id
+				${ew.customSqlSegment}
+	</select>
+</mapper>
