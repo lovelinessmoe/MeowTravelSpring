@@ -12,6 +12,9 @@ import vip.ashes.travel.pay.utils.LoginUserUtil;
 
 import java.util.HashMap;
 
+/**
+ * @author loveliness
+ */
 @Service
 @AllArgsConstructor
 public class SponsorServiceImpl extends ServiceImpl<SponsorMapper, Sponsor> implements SponsorService {

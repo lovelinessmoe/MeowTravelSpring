@@ -36,7 +36,40 @@
 			<groupId>vip.ashes</groupId>
 			<artifactId>travel-common-redis</artifactId>
 		</dependency>
+		<!-- Spring native-->
+		<dependency>
+			<groupId>org.springframework.experimental</groupId>
+			<artifactId>spring-native</artifactId>
+		</dependency>
 
 	</dependencies>
 
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.experimental</groupId>
+				<artifactId>spring-aot-maven-plugin</artifactId>
+				<configuration>
+					<removeSpelSupport>true</removeSpelSupport>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<classifier>${classifier}</classifier>
+					<image>
+						<builder>${builder}</builder>
+						<env>
+							<BP_NATIVE_IMAGE>true</BP_NATIVE_IMAGE>
+							<BP_NATIVE_IMAGE_BUILD_ARGUMENTS>${native.build.args}</BP_NATIVE_IMAGE_BUILD_ARGUMENTS>
+						</env>
+						<!--执行构建任务的镜像，如果在当前环境不存在才会远程下载-->
+						<pullPolicy>IF_NOT_PRESENT</pullPolicy>
+					</image>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>
