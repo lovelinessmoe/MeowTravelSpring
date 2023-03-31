@@ -2,50 +2,69 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<parent>
-		<artifactId>travel</artifactId>
-		<groupId>vip.ashes</groupId>
-		<version>1.0-SNAPSHOT</version>
-	</parent>
-	<modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>travel</artifactId>
+        <groupId>vip.ashes</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
 
-	<artifactId>travel-gateway</artifactId>
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
-		</dependency>
-		<!-- SpringCloud Gateway -->
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-gateway</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.alibaba.cloud</groupId>
-			<artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>vip.ashes</groupId>
-			<artifactId>travel-common-security</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>vip.ashes</groupId>
-			<artifactId>travel-common-core</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>vip.ashes</groupId>
-			<artifactId>travel-common-redis</artifactId>
-		</dependency>
+    <artifactId>travel-gateway</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+        <!-- SpringCloud Gateway -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-gateway</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>vip.ashes</groupId>
+            <artifactId>travel-common-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>vip.ashes</groupId>
+            <artifactId>travel-common-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>vip.ashes</groupId>
+            <artifactId>travel-common-redis</artifactId>
+        </dependency>
 		<!-- Spring native-->
 		<dependency>
 			<groupId>org.springframework.experimental</groupId>
 			<artifactId>spring-native</artifactId>
 		</dependency>
 
-	</dependencies>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <!--可以把依赖的包都打包到生成的Jar包中-->
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 
-
-	<build>
+	<!--<build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.experimental</groupId>
@@ -65,11 +84,11 @@
 							<BP_NATIVE_IMAGE>true</BP_NATIVE_IMAGE>
 							<BP_NATIVE_IMAGE_BUILD_ARGUMENTS>${native.build.args}</BP_NATIVE_IMAGE_BUILD_ARGUMENTS>
 						</env>
-						<!--执行构建任务的镜像，如果在当前环境不存在才会远程下载-->
+						&lt;!&ndash;执行构建任务的镜像，如果在当前环境不存在才会远程下载&ndash;&gt;
 						<pullPolicy>IF_NOT_PRESENT</pullPolicy>
 					</image>
 				</configuration>
 			</plugin>
 		</plugins>
-	</build>
+	</build>-->
 </project>

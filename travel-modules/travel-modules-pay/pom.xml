@@ -62,6 +62,27 @@
 	<build>
 		<plugins>
 			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<!--可以把依赖的包都打包到生成的Jar包中-->
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+	<!--<build>
+		<plugins>
+			<plugin>
 				<groupId>org.springframework.experimental</groupId>
 				<artifactId>spring-aot-maven-plugin</artifactId>
 				<configuration>
@@ -79,11 +100,11 @@
 							<BP_NATIVE_IMAGE>true</BP_NATIVE_IMAGE>
 							<BP_NATIVE_IMAGE_BUILD_ARGUMENTS>${native.build.args}</BP_NATIVE_IMAGE_BUILD_ARGUMENTS>
 						</env>
-						<!--执行构建任务的镜像，如果在当前环境不存在才会远程下载-->
+						&lt;!&ndash;执行构建任务的镜像，如果在当前环境不存在才会远程下载&ndash;&gt;
 						<pullPolicy>IF_NOT_PRESENT</pullPolicy>
 					</image>
 				</configuration>
 			</plugin>
 		</plugins>
-	</build>
+	</build>-->
 </project>

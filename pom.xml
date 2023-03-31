@@ -2,7 +2,7 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-ª    <modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
     <groupId>vip.ashes</groupId>
     <artifactId>travel</artifactId>
@@ -14,19 +14,17 @@
         <module>travel-auth</module>
         <module>travel-modules</module>
     </modules>
-
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.7.4</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-        <spring-boot.version>2.7.2</spring-boot.version>
+        <spring-boot.version>2.7.4</spring-boot.version>
         <spring-cloud.version>2021.0.3</spring-cloud.version>
         <spring-cloud-alibaba.version>2021.0.1.0</spring-cloud-alibaba.version>
         <alibaba.nacos.version>2.0.4</alibaba.nacos.version>
@@ -34,18 +32,18 @@
         <jwt.version>0.11.5</jwt.version>
         <spring-boot-starter-security>2.7.0</spring-boot-starter-security>
         <spring-cloud-starter-oauth2.version>2.2.5.RELEASE</spring-cloud-starter-oauth2.version>
-        <travel.version>1.0-SNAPSHOT</travel.version>
+        <travel.version>${version}</travel.version>
         <nimbus-jose-jwt.version>9.23</nimbus-jose-jwt.version>
         <mapstruct.version>1.4.2.Final</mapstruct.version>
+        <docker.repository.registry>registry.cn-hangzhou.aliyuncs.com</docker.repository.registry>
+        <docker.repository.namespace>loveliness</docker.repository.namespace>
     </properties>
-
     <dependencies>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
     </dependencies>
-
     <!-- 依赖声明 -->
     <dependencyManagement>
         <dependencies>
@@ -79,11 +77,6 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <!--邮件模块依赖-->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-mail</artifactId>
-            </dependency>
             <!--MySQL-->
             <dependency>
                 <groupId>mysql</groupId>
@@ -95,7 +88,7 @@
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
-                <version>LATEST</version>
+                <version>3.5.2</version>
             </dependency>
             <!--hutool工具包-->
             <dependency>
@@ -189,6 +182,7 @@
                 <artifactId>lombok-mapstruct-binding</artifactId>
                 <version>0.2.0</version>
             </dependency>
+            <!--邮件模块依赖-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-mail</artifactId>
@@ -208,10 +202,42 @@
         </dependencies>
     </dependencyManagement>
 
-    <!--插件配置-->
     <build>
         <pluginManagement>
             <plugins>
+                <plugin>
+                    <groupId>com.spotify</groupId>
+                    <artifactId>docker-maven-plugin</artifactId>
+                    <version>1.2.0</version>
+                    <!--将插件绑定在某个phase执行-->
+                    <executions>
+                        <execution>
+                            <id>build-image</id>
+                            <!--将插件绑定在package这个phase上。也就是说，用户只需执行mvn package ，就会自动执行mvn docker:build-->
+                            <phase>package</phase>
+                            <goals>
+                                <goal>build</goal>
+                                <goal>push</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <serverId>ali-docker-registry</serverId>
+                        <registryUrl>${docker.repository.registry}</registryUrl>
+                        <!--指定生成的镜像名-->
+                        <imageName>
+                            ${docker.repository.registry}/${docker.repository.namespace}/${project.artifactId}:${project.version}
+                        </imageName>
+                        <!-- 指定 Dockerfile 路径  ${project.basedir}：项目根路径下-->
+                        <dockerDirectory>${project.basedir}</dockerDirectory>
+                        <goal>push</goal>
+                        <buildArgs>
+                            <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
+                        </buildArgs>
+                        <pushImage>true</pushImage>
+                    </configuration>
+                </plugin>
+
                 <!-- aot插件，ahead-of-time transformations -->
                 <plugin>
                     <groupId>org.springframework.experimental</groupId>
@@ -235,61 +261,4 @@
             </plugins>
         </pluginManagement>
     </build>
-
-    <!-- 插件管理 -->
-    <pluginRepositories>
-        <pluginRepository>
-            <id>spring-release</id>
-            <name>Spring release</name>
-            <url>https://repo.spring.io/release</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </pluginRepository>
-        <pluginRepository>
-            <id>spring-milestone</id>
-            <name>Spring milestone</name>
-            <url>https://repo.spring.io/milestone</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </pluginRepository>
-        <pluginRepository>
-            <id>spring-snapshot</id>
-            <name>Spring Snapshots</name>
-            <url>https://repo.spring.io/snapshot</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-        </pluginRepository>
-    </pluginRepositories>
-
-    <!--仓库管理-->
-    <repositories>
-        <repository>
-            <id>spring-release</id>
-            <name>Spring release</name>
-            <url>https://repo.spring.io/release</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>spring-milestone</id>
-            <name>Spring milestone</name>
-            <url>https://repo.spring.io/milestone</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>spring-snapshot</id>
-            <name>Spring Snapshots</name>
-            <url>https://repo.spring.io/snapshot</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-        </repository>
-    </repositories>
-
 </project>
