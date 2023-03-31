@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="vip.ashes.travel.map.mapper.UserRatePoiMapper">
-	<resultMap id="BaseResultMap" type="vip.ashes.travel.map.entity.UserRatePoi">
-		<!--@mbg.generated-->
-		<!--@Table Travel.user_rate_poi-->
-		<id column="baidu_poi_uid" jdbcType="CHAR" property="baiduPoiUid"/>
-		<id column="user_id" jdbcType="CHAR" property="userId"/>
-		<result column="rate" jdbcType="DOUBLE" property="rate"/>
-	</resultMap>
-	<sql id="Base_Column_List">
-		<!--@mbg.generated-->
-		baidu_poi_uid, user_id, rate
-	</sql>
-	<select id="getAllSightsPoiRate" resultMap="BaseResultMap">
-		select urp.*
-		from user_rate_poi as urp
-				     left join baidu_poi as bp on urp.baidu_poi_uid = bp.uid
-		where bp.type = 0;
-	</select>
+    <resultMap id="BaseResultMap" type="vip.ashes.travel.map.entity.UserRatePoi">
+        <!--@mbg.generated-->
+        <!--@Table Travel.user_rate_poi-->
+        <id column="baidu_poi_uid" jdbcType="CHAR" property="baiduPoiUid"/>
+        <id column="user_id" jdbcType="CHAR" property="userId"/>
+        <result column="rate" jdbcType="DOUBLE" property="rate"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        baidu_poi_uid, user_id, rate
+    </sql>
+    <select id="getAllSightsPoiRate" resultMap="BaseResultMap">
+        select urp.*
+        from user_rate_poi as urp
+                 left join baidu_poi as bp on urp.baidu_poi_uid = bp.uid
+        where bp.type = 0;
+    </select>
 </mapper>

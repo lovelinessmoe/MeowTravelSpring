@@ -38,12 +38,12 @@ public class TravelGroupUserReportServiceImpl extends ServiceImpl<TravelGroupUse
 
     @Override
     public List<CheckGroupInfo> getTodayGroupCheckInfo(String groupId) {
-        return getGroupCheckInfo(groupId,DateUtil.formatDate(new Date()));
+        return getGroupCheckInfo(groupId, DateUtil.formatDate(new Date()));
     }
 
     @Override
     public List<CheckGroupInfo> getGroupCheckInfo(String groupId, String date) {
-        return travelGroupUserReportMapper.getGroupCheckInfo(groupId,date);
+        return travelGroupUserReportMapper.getGroupCheckInfo(groupId, date);
     }
 }
 

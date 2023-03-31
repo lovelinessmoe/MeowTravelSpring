@@ -15,5 +15,5 @@ import vip.ashes.travel.system.entity.Vo.SponsorVo;
  */
 @Mapper
 public interface SponsorMapper extends BaseMapper<Sponsor> {
-    PageDTO<SponsorVo> getSponsorPage(@Param("query") PageDTO<Tactic> query,@Param(Constants.WRAPPER) QueryWrapper<SponsorVo> sponsorVoQueryWrapper);
+    PageDTO<SponsorVo> getSponsorPage(@Param("query") PageDTO<Tactic> query, @Param(Constants.WRAPPER) QueryWrapper<SponsorVo> sponsorVoQueryWrapper);
 }

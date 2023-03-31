@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="vip.ashes.travel.user.mapper.TravelGroupUserMapper">
-  <resultMap id="BaseResultMap" type="vip.ashes.travel.user.entity.TravelGroupUser">
-    <!--@mbg.generated-->
-    <!--@Table Travel.travel_group_user-->
-    <id column="group_user_id" jdbcType="CHAR" property="groupUserId" />
-    <result column="group_id" jdbcType="CHAR" property="groupId" />
-    <result column="user_id" jdbcType="CHAR" property="userId" />
-    <result column="is_leader" jdbcType="BOOLEAN" property="isLeader" />
-    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    <!--@mbg.generated-->
-    group_user_id, group_id, user_id, is_leader, add_time
-  </sql>
+    <resultMap id="BaseResultMap" type="vip.ashes.travel.user.entity.TravelGroupUser">
+        <!--@mbg.generated-->
+        <!--@Table Travel.travel_group_user-->
+        <id column="group_user_id" jdbcType="CHAR" property="groupUserId"/>
+        <result column="group_id" jdbcType="CHAR" property="groupId"/>
+        <result column="user_id" jdbcType="CHAR" property="userId"/>
+        <result column="is_leader" jdbcType="BOOLEAN" property="isLeader"/>
+        <result column="add_time" jdbcType="TIMESTAMP" property="addTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        group_user_id, group_id, user_id, is_leader, add_time
+    </sql>
 </mapper>

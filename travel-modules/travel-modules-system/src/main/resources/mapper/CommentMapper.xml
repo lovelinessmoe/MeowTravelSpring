@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="vip.ashes.travel.system.mapper.CommentMapper">
-	<resultMap id="BaseResultMap" type="vip.ashes.travel.system.entity.Comment">
-		<!--@mbg.generated-->
-		<!--@Table Travel.`comment`-->
-		<id column="comment_id" jdbcType="CHAR" property="commentId"/>
-		<result column="user_id" jdbcType="CHAR" property="userId"/>
-		<result column="content" jdbcType="VARCHAR" property="content"/>
-		<result column="create_time" jdbcType="DATE" property="createTime"/>
-		<result column="p_id" jdbcType="CHAR" property="pId"/>
-		<result column="level" jdbcType="CHAR" property="level"/>
-		<result column="tactic_id" jdbcType="CHAR" property="tacticId"/>
-	</resultMap>
-	<sql id="Base_Column_List">
-		<!--@mbg.generated-->
-		comment_id, user_id, content, create_time, p_id, `level`, tactic_id
-	</sql>
-	<select id="getCommentByTacticId" resultType="vip.ashes.travel.system.entity.Vo.CommentVO">
-		select c.comment_id,
-		       c.user_id,
-		       c.content,
-		       c.create_time,
-		       c.p_id,
-		       u.user_name,
-		       u.avatar_url
-		from comment c
-				     left join user u on c.user_id = u.user_id
-		where c.tactic_id = #{tactic_id,jdbcType=VARCHAR}
-	</select>
+    <resultMap id="BaseResultMap" type="vip.ashes.travel.system.entity.Comment">
+        <!--@mbg.generated-->
+        <!--@Table Travel.`comment`-->
+        <id column="comment_id" jdbcType="CHAR" property="commentId"/>
+        <result column="user_id" jdbcType="CHAR" property="userId"/>
+        <result column="content" jdbcType="VARCHAR" property="content"/>
+        <result column="create_time" jdbcType="DATE" property="createTime"/>
+        <result column="p_id" jdbcType="CHAR" property="pId"/>
+        <result column="level" jdbcType="CHAR" property="level"/>
+        <result column="tactic_id" jdbcType="CHAR" property="tacticId"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        comment_id, user_id, content, create_time, p_id, `level`, tactic_id
+    </sql>
+    <select id="getCommentByTacticId" resultType="vip.ashes.travel.system.entity.Vo.CommentVO">
+        select c.comment_id,
+        c.user_id,
+        c.content,
+        c.create_time,
+        c.p_id,
+        u.user_name,
+        u.avatar_url
+        from comment c
+        left join user u on c.user_id = u.user_id
+        where c.tactic_id = #{tactic_id,jdbcType=VARCHAR}
+    </select>
 </mapper>

@@ -1,55 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="vip.ashes.travel.user.mapper.TravelGroupUserReportMapper">
-	<resultMap id="BaseResultMap" type="vip.ashes.travel.user.entity.TravelGroupUserReport">
-		<!--@mbg.generated-->
-		<!--@Table Travel.travel_group_user_report-->
-		<id column="group_user_id" jdbcType="CHAR" property="groupUserId"/>
-		<result column="report_time" jdbcType="TIMESTAMP" property="reportTime"/>
-		<result column="location_lat" jdbcType="DECIMAL" property="locationLat"/>
-		<result column="location_lng" jdbcType="DECIMAL" property="locationLng"/>
-	</resultMap>
-	<sql id="Base_Column_List">
-		<!--@mbg.generated-->
-		group_user_id, report_time, location_lat, location_lng
-	</sql>
-	<select id="getUserCheck" resultMap="BaseResultMap">
-		SELECT *,
-		       DATE_FORMAT(report_time, '%H:%i') AS 'time'
-		FROM travel_group_user_report
-		WHERE DATE_FORMAT(report_time, '%Y-%m-%d') = '${date}'
-		  AND group_user_id = '${groupUserId}'
-		LIMIT 1
-	</select>
-	<select id="getGroupCheckInfo" resultType="vip.ashes.travel.user.entity.Vo.CheckGroupInfo">
-		SELECT u.user_id,
-		       u.user_name,
-		       u.email,
-		       u.avatar_url,
-		       u.telephone,
-		       tgu.add_time,
-		       tgu.is_leader,
-		       tgur.location_lng,
-		       tgur.location_lat,
-		       DATE_FORMAT(report_time, '%H:%i') AS 'report_time'
-		FROM `user` u
-				     LEFT JOIN travel_group_user tgu ON tgu.user_id = u.user_id
-				     LEFT JOIN travel_group_user_report tgur ON tgur.group_user_id = tgu.group_user_id
-				and DATE_FORMAT(tgur.report_time, '%Y-%m-%d') = '${date}'
-		WHERE tgu.group_id = '${groupId}'
-		ORDER BY is_leader DESC,
-		         tgur.report_time
-	</select>
-	<delete id="deleteReportByGroupUserId">
-		delete
-		from travel_group_user_report
-		<where>
-			<if test="groupUserIds != null and groupUserIds.size() > 0">
-				group_user_id IN
-				<foreach item="item" index="index" collection="groupUserIds" open="(" close=")" separator=",">
-					#{item}
-				</foreach>
-			</if>
-		</where>
-	</delete>
+    <resultMap id="BaseResultMap" type="vip.ashes.travel.user.entity.TravelGroupUserReport">
+        <!--@mbg.generated-->
+        <!--@Table Travel.travel_group_user_report-->
+        <id column="group_user_id" jdbcType="CHAR" property="groupUserId"/>
+        <result column="report_time" jdbcType="TIMESTAMP" property="reportTime"/>
+        <result column="location_lat" jdbcType="DECIMAL" property="locationLat"/>
+        <result column="location_lng" jdbcType="DECIMAL" property="locationLng"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        group_user_id, report_time, location_lat, location_lng
+    </sql>
+    <select id="getUserCheck" resultMap="BaseResultMap">
+        SELECT *,
+        DATE_FORMAT(report_time, '%H:%i') AS 'time'
+        FROM travel_group_user_report
+        WHERE DATE_FORMAT(report_time, '%Y-%m-%d') = '${date}'
+        AND group_user_id = '${groupUserId}'
+        LIMIT 1
+    </select>
+    <select id="getGroupCheckInfo" resultType="vip.ashes.travel.user.entity.Vo.CheckGroupInfo">
+        SELECT u.user_id,
+        u.user_name,
+        u.email,
+        u.avatar_url,
+        u.telephone,
+        tgu.add_time,
+        tgu.is_leader,
+        tgur.location_lng,
+        tgur.location_lat,
+        DATE_FORMAT(report_time, '%H:%i') AS 'report_time'
+        FROM `user` u
+        LEFT JOIN travel_group_user tgu ON tgu.user_id = u.user_id
+        LEFT JOIN travel_group_user_report tgur ON tgur.group_user_id = tgu.group_user_id
+        and DATE_FORMAT(tgur.report_time, '%Y-%m-%d') = '${date}'
+        WHERE tgu.group_id = '${groupId}'
+        ORDER BY is_leader DESC,
+        tgur.report_time
+    </select>
+    <delete id="deleteReportByGroupUserId">
+        delete
+        from travel_group_user_report
+        <where>
+            <if test="groupUserIds != null and groupUserIds.size() > 0">
+                group_user_id IN
+                <foreach item="item" index="index" collection="groupUserIds" open="(" close=")" separator=",">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+    </delete>
 </mapper>

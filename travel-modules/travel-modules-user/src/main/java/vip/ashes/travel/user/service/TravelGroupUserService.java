@@ -31,6 +31,7 @@ public interface TravelGroupUserService extends IService<TravelGroupUser> {
 
     /**
      * 解散旅游团
+     *
      * @param groupId 旅游团id
      * @return 是否成功
      */
