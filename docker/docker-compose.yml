@@ -8,16 +8,16 @@ services:
     container_name: travel-gateway
   Auth:
     image: registry.cn-hangzhou.aliyuncs.com/loveliness/travel-auth:1.0-SNAPSHOT
-    ports:
-      - "9401:9401"
+#    ports:
+#      - "9401:9401"
     restart: always
     container_name: travel-auth
     depends_on:
       - GateWay
   System:
     image: registry.cn-hangzhou.aliyuncs.com/loveliness/travel-modules-system:1.0-SNAPSHOT
-    ports:
-      - "9301:9301"
+#    ports:
+#      - "9301:9301"
     restart: always
     container_name: travel-system
     depends_on:
@@ -25,8 +25,8 @@ services:
       - Auth
   User:
     image: registry.cn-hangzhou.aliyuncs.com/loveliness/travel-modules-user:1.0-SNAPSHOT
-    ports:
-      - "9302:9302"
+#    ports:
+#      - "9302:9302"
     restart: always
     container_name: travel-user
     depends_on:
@@ -34,8 +34,8 @@ services:
       - Auth
   Map:
     image: registry.cn-hangzhou.aliyuncs.com/loveliness/travel-modules-map:1.0-SNAPSHOT
-    ports:
-      - "9303:9303"
+#    ports:
+#      - "9303:9303"
     restart: always
     container_name: travel-map
     depends_on:
@@ -43,8 +43,8 @@ services:
       - Auth
   Pay:
     image: registry.cn-hangzhou.aliyuncs.com/loveliness/travel-modules-pay:1.0-SNAPSHOT
-    ports:
-      - "9304:9304"
+#    ports:
+#      - "9304:9304"
     restart: always
     container_name: travel-pay
     depends_on:

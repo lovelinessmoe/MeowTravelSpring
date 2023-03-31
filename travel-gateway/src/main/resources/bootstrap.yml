@@ -1,8 +1,8 @@
 server:
-  port: 9303
+  port: 9201
 spring:
   application:
-    name: travel-moudel-map
+    name: travel-gateway
   cloud:
     nacos:
       discovery:
@@ -19,15 +19,6 @@ spring:
         username: ${NACOS_USERNAME:nacos}
         password: ${NACOS_PASSWORD:nacos}
         timeout: 15000
-  redis:
-    database: 0
-    port: 6379
-    host: localhost
-    password:
-  datasource:
-    url: jdbc:mysql://${mysql.ip}:3306/Travel
-    username: ${mysql.username}
-    password: ${mysql.password}
 logging:
   level:
     org:
