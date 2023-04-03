@@ -1,3 +1,4 @@
+#docker-compose
 version: "3"
 services:
   GateWay:
@@ -6,47 +7,95 @@ services:
       - "9201:9201"
     restart: always
     container_name: travel-gateway
+    environment:
+      - TZ=Asia/Shanghai
+      - JAVA_OPTS=
+        -Dmysql.ip=8.142.6.239 -Dmysql.username=travel -Dmysql.password=travelcsm813@MOE
+        -DNACOS_SERVER_ADDR=8.142.6.239:8848 -DNACOS_PASSWORD=csm813@MOE
+        -Dredis.host=8.142.6.239 -Dredis.password=CAOshunmiao6moe
+        --add-opens java.base/java.lang=ALL-UNNAMED
+        -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=128m -Xms128m -Xmx256m -Xmn128m -Xss256k
   Auth:
     image: registry.cn-hangzhou.aliyuncs.com/loveliness/travel-auth:1.0-SNAPSHOT
-#    ports:
-#      - "9401:9401"
+    ports:
+      - "9401:9401"
     restart: always
     container_name: travel-auth
     depends_on:
       - GateWay
+    environment:
+      - TZ=Asia/Shanghai
+      - JAVA_OPTS=
+        -Dmysql.ip=8.142.6.239 -Dmysql.username=travel -Dmysql.password=travelcsm813@MOE
+        -DNACOS_SERVER_ADDR=8.142.6.239:8848 -DNACOS_PASSWORD=csm813@MOE
+        -Dredis.host=8.142.6.239 -Dredis.password=CAOshunmiao6moe
+        --add-opens java.base/java.lang=ALL-UNNAMED 
+        -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=128m -Xms128m -Xmx256m -Xmn128m -Xss256k
   System:
     image: registry.cn-hangzhou.aliyuncs.com/loveliness/travel-modules-system:1.0-SNAPSHOT
-#    ports:
-#      - "9301:9301"
+    #    ports:
+    #      - "9301:9301"
     restart: always
     container_name: travel-system
     depends_on:
       - GateWay
       - Auth
+    environment:
+      - TZ=Asia/Shanghai
+      - JAVA_OPTS=
+        -Dmysql.ip=8.142.6.239 -Dmysql.username=travel -Dmysql.password=travelcsm813@MOE
+        -DNACOS_SERVER_ADDR=8.142.6.239:8848 -DNACOS_PASSWORD=csm813@MOE
+        -Dredis.host=8.142.6.239 -Dredis.password=CAOshunmiao6moe
+        --add-opens java.base/java.lang=ALL-UNNAMED
+        -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=128m -Xms128m -Xmx256m -Xmn128m -Xss256k
   User:
     image: registry.cn-hangzhou.aliyuncs.com/loveliness/travel-modules-user:1.0-SNAPSHOT
-#    ports:
-#      - "9302:9302"
+    #    ports:
+    #      - "9302:9302"
     restart: always
     container_name: travel-user
     depends_on:
       - GateWay
       - Auth
+    environment:
+      - TZ=Asia/Shanghai
+      - JAVA_OPTS=
+        -Dmysql.ip=8.142.6.239 -Dmysql.username=travel -Dmysql.password=travelcsm813@MOE
+        -DNACOS_SERVER_ADDR=8.142.6.239:8848 -DNACOS_PASSWORD=csm813@MOE
+        -Dredis.host=8.142.6.239 -Dredis.password=CAOshunmiao6moe
+        --add-opens java.base/java.lang=ALL-UNNAMED
+        -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=128m -Xms128m -Xmx256m -Xmn128m -Xss256k
   Map:
     image: registry.cn-hangzhou.aliyuncs.com/loveliness/travel-modules-map:1.0-SNAPSHOT
-#    ports:
-#      - "9303:9303"
+    #    ports:
+    #      - "9303:9303"
     restart: always
     container_name: travel-map
     depends_on:
       - GateWay
       - Auth
+    environment:
+      - TZ=Asia/Shanghai
+      - JAVA_OPTS=
+        -Dmysql.ip=8.142.6.239 -Dmysql.username=travel -Dmysql.password=travelcsm813@MOE
+        -DNACOS_SERVER_ADDR=8.142.6.239:8848 -DNACOS_PASSWORD=csm813@MOE
+        -Dredis.host=8.142.6.239 -Dredis.password=CAOshunmiao6moe
+        --add-opens java.base/java.lang=ALL-UNNAMED
+        -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=128m -Xms128m -Xmx256m -Xmn128m -Xss256k
   Pay:
     image: registry.cn-hangzhou.aliyuncs.com/loveliness/travel-modules-pay:1.0-SNAPSHOT
-#    ports:
-#      - "9304:9304"
+    #    ports:
+    #      - "9304:9304"
     restart: always
     container_name: travel-pay
     depends_on:
       - GateWay
       - Auth
+    environment:
+      - TZ=Asia/Shanghai
+      - JAVA_OPTS=
+        -Dmysql.ip=8.142.6.239 -Dmysql.username=travel -Dmysql.password=travelcsm813@MOE
+        -DNACOS_SERVER_ADDR=8.142.6.239:8848 -DNACOS_PASSWORD=csm813@MOE
+        -Dredis.host=8.142.6.239 -Dredis.password=CAOshunmiao6moe
+        --add-opens java.base/java.lang=ALL-UNNAMED
+        -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=128m -Xms128m -Xmx256m -Xmn128m -Xss256k

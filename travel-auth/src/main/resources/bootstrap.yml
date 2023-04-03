@@ -6,12 +6,12 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: ${NACOS_SERVER_ADDR:8.142.6.239:8848}
+        server-addr: ${NACOS_SERVER_ADDR:127.0.0.1:8848}
         namespace: ${NACOS_NAMESPACE:public}
         username: ${NACOS_USERNAME:nacos}
         password: ${NACOS_PASSWORD:nacos}
       config:
-        server-addr: ${NACOS_SERVER_ADDR:8.142.6.239:8848}
+        server-addr: ${NACOS_SERVER_ADDR:127.0.0.1:8848}
         file-extension: yaml  # 必须修改成yaml
         group: DEFAULT_GROUP  # 缺省即可
         prefix: ${spring.application.name} # 缺省即可
@@ -22,8 +22,8 @@ spring:
   redis:
     database: 0
     port: 6379
-    host: localhost
-    password:
+    host: ${redis.host}
+    password: ${redis.password}
   datasource:
     url: jdbc:mysql://${mysql.ip}:3306/Travel
     username: ${mysql.username}

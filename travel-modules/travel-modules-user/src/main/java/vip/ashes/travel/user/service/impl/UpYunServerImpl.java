@@ -5,6 +5,7 @@ import com.upyun.UpException;
 import com.upyun.UpYunUtils;
 import okhttp3.Response;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import vip.ashes.travel.user.service.UpYunServer;
@@ -19,14 +20,15 @@ import java.util.Map;
  * @author loveliness
  */
 @Service
+@RefreshScope
 public class UpYunServerImpl implements UpYunServer {
-    @Value("${up-yun.user-name}")
+    @Value("${up-yun:user-name}")
     @Resource
     private String username;
-    @Value("${up-yun.password}")
+    @Value("${up-yun:password}")
     @Resource
     private String password;
-    @Value("${up-yun.bucket}")
+    @Value("${up-yun:bucket}")
     @Resource
     private String bucket;
 

@@ -1,8 +1,8 @@
 server:
-  port: 9303
+  port: 9302
 spring:
   application:
-    name: travel-moudel-map
+    name: travel-moudel-user
   cloud:
     nacos:
       discovery:
@@ -22,9 +22,12 @@ spring:
   redis:
     database: 0
     port: 6379
-    host: ${redis.host}
-    password: ${redis.password}
+#    host: ${redis.host}
+#    password: ${redis.password}
+    host: 8.142.6.239
+    password: CAOshunmiao6moe
   datasource:
     url: jdbc:mysql://${mysql.ip}:3306/Travel
     username: ${mysql.username}
     password: ${mysql.password}
+

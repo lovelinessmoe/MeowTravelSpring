@@ -2,6 +2,7 @@ package vip.ashes.travel.user.controller;
 
 import lombok.AllArgsConstructor;
 import okhttp3.Response;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -16,6 +17,7 @@ import vip.ashes.travel.user.service.UpYunServer;
 @RestController
 @RequestMapping("/upYun")
 @AllArgsConstructor
+@RefreshScope
 public class UpYunController {
 
     private final UpYunServer upYunServer;

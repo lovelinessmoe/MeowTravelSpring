@@ -2,6 +2,8 @@ package vip.ashes.travel.geteway.config;
 
 import cn.hutool.core.util.ArrayUtil;
 import lombok.AllArgsConstructor;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
@@ -19,6 +21,8 @@ import vip.ashes.travel.geteway.authorization.AuthorizationManager;
 import vip.ashes.travel.geteway.component.RestAuthenticationEntryPoint;
 import vip.ashes.travel.geteway.component.RestfulAccessDeniedHandler;
 
+import java.util.List;
+
 /**
  * 资源服务器配置
  *
@@ -32,9 +36,27 @@ public class ResourceServerConfig {
     private final IgnoreUrlsConfig ignoreUrlsConfig;
     private final RestfulAccessDeniedHandler restfulAccessDeniedHandler;
     private final RestAuthenticationEntryPoint restAuthenticationEntryPoint;
+    private final DiscoveryClient discoveryClient;
 
     @Bean
     public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
+
+        // 通过注册中心获取Auth的地址
+
+        StringBuilder sb = new StringBuilder();
+        List<ServiceInstance> serviceInstanceList = discoveryClient.getInstances("travel-auth");
+        serviceInstanceList.forEach(serviceInstance -> {
+            //获取host
+            String host = serviceInstance.getHost();
+            //获取端口号
+            int port = serviceInstance.getPort();
+            sb.append(host);
+            sb.append(":");
+            sb.append(port);
+//            serviceInstance.getServiceId();
+        });
+
+
         http.oauth2ResourceServer().jwt()
                 .jwtAuthenticationConverter(jwtAuthenticationConverter());
         //自定义处理JWT请求头过期或签名错误的结果
@@ -50,6 +72,15 @@ public class ResourceServerConfig {
                 //处理未认证
                 .authenticationEntryPoint(restAuthenticationEntryPoint)
                 .and().csrf().disable();
+
+
+        // 确定RSA公匙位置
+        http.oauth2ResourceServer(oauth2 -> oauth2
+                .jwt(jwt -> jwt
+                        .jwkSetUri("http://" + sb + "/rsa/publicKey")
+                )
+        );
+
         return http.build();
     }
 

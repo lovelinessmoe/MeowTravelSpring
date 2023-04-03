@@ -1,7 +1,8 @@
 package vip.ashes.travel.user.utils;
 
 import cn.hutool.core.util.ReUtil;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
@@ -10,7 +11,6 @@ import org.springframework.web.multipart.MultipartFile;
 import vip.ashes.travel.user.entity.Vo.MailVo;
 
 import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
 import java.util.Date;
 
 /**
@@ -19,12 +19,10 @@ import java.util.Date;
  * @author loveliness
  */
 @Component
+@AllArgsConstructor
 public class MailUtils {
 
-    @Autowired
     private static JavaMailSenderImpl mailSender;
-    @Resource
-    private JavaMailSenderImpl javaMailSender;
 
     public static MailVo sendMail(MailVo mailVo) {
         try {
@@ -129,8 +127,9 @@ public class MailUtils {
     }
 
     @PostConstruct
+    @RefreshScope
     public void init() {
-        mailSender = javaMailSender;
+        mailSender = new JavaMailSenderImpl();
     }
 
     /**
