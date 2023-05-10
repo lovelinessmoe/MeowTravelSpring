@@ -18,7 +18,7 @@ import javax.annotation.Resource;
 @Configuration
 @RefreshScope
 public class BaiduBeanConfig {
-    @Value("${map:ak}")
+    @Value("${map.ak:ilRD2w3rLrxTsBMWOtpePkvIoipsjzbQ}")
     @Resource
     private String ak;
 
