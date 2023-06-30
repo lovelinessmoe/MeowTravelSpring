@@ -4,13 +4,29 @@
 
 #### 介绍
 
+后端Cloud [Gitee](https://gitee.com/lovelinessmoe/MeowTravelSpring) [GitHub](https://github.com/lovelinessmoe/MeowTravelSpring)
+
+前端VUE3 [Gitee](https://gitee.com/lovelinessmoe/MeowTravelVue) [GitHub](https://github.com/lovelinessmoe/MeowTravelVue)
+
+移动端Flutter [Gitee](https://gitee.com/lovelinessmoe/MeowTravelFlutter) [GitHub](https://github.com/lovelinessmoe/MeowTravelFlutter)
+
 内蒙古师范大学2019计算机科学技术学院曹顺淼毕业设计
 
 基于Spring Boot的旅游路线以及酒店住宿推荐系统的设计与实现
 
-涉及技术：前台使用Vue，后台使用Spring Boot
+涉及技术：SpringBoot+SpringCloud+SpingGateWay+NacOS+MySql+Mybatis+MybatisPlus+Redis+SpringSecurity OAuth2+JWT+⼜拍云OSS+百度地图API+VUE+Axios+Flutter+dio
 
-项目描述：本系统分为网站前台和后台管理。前台系统可以进行用户注册登陆，查看预定酒店，查看预定景点线路，可以发布景点攻略等操作。后台系统可以进行用户管理，景点管理，线路管理，攻略审核管理等操作。
+项目描述：项⽬包含六个服务,分别是认证服务,⽹关服务,系统管理员服务,⽤户服务,⽀付服务以及百度地图服务;认证服务主要实现token⽣成与下发;⽹关服务实现应⽤的主要⼊⼝,对不同请求分发到不同微服务上,并且在请求时进⾏权限认证;系统管理员服务可以对⽤户,攻略,旅游团以及存在的酒店/景点信息进⾏管理,对系统⼤部分内容进⾏管理;⽤户服务有登录注册,浏览攻略,发布攻略,管理攻略,地点检索,获取推荐,个⼈信息修改;⽀付服务是对攻略的赞助后端服务;百度地图服务计⼊了⼏个百度地图API,还有推荐实现,系统主要通过基于⽤户的协同过滤算法给⽤户进⾏推荐
+
+1. 采⽤分布式架构,使⽤SpingCloud作为系统基础,使⽤NacOS作为注册中⼼
+2. 使⽤SpringGateWay+SpringSecurity作为系统鉴权以及服务分流,使⽤Redis作为资源服务器权限存储器
+3. 使⽤Mybatis+MybatisPlus+Mysql作为系统持久层框架
+4. 使⽤⼜拍云OSS作为攻略图⽚和⽤户头像存储器
+5. 使⽤百度地图API给⽤户地图直观的展现
+6. 前端使⽤VUE+ElementUI,使⽤Axios进⾏异步请求,使⽤VueX记录Token
+7. 使⽤Redis对常⽤数据进⾏缓存,⽐如权限列表,字典信息以及需要⼤量计算的数据(地图⼈数
+可视化)
+8. 移动端使⽤Flutter开发,使⽤dio进⾏异步请求
 
 - 功能模块：
     - 个人中心：可以查看并且修改个人资料信息。
